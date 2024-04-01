@@ -31,6 +31,21 @@ class BlogPost(PostBase):
         return reverse("post_detail", args=[str(self.slug)])
 
     def __str__(self):
-        return f"{self.heading} by {self.writer}"
+        return f"{self.heading} | by {self.writer}"
 
     status = models.IntegerField(choices=STATUS, default=0)
+
+
+class Comment(PostBase):
+    commenter = models.ForeignKey(
+        User, on_delete=models.CASCADE, related_name="commented_posts"
+    )
+    blog_post = models.ForeignKey(
+            BlogPost, on_delete=models.CASCADE, related_name="comments"
+    )
+
+    class Meta:
+        ordering = ["created_at"]
+
+    def __str__(self):
+        return f"Comment: {self.content} | by {self.commenter}"
