@@ -20,7 +20,6 @@ STATUS = ((0, "Draft"), (1, "Published"))
 class BlogPost(PostBase):
     heading = models.CharField(max_length=100, unique=True)
     slug = models.SlugField(max_length=100, unique=True)
-    last_updated = models.DateTimeField(auto_now_add=True)
     writer = models.ForeignKey(
         User, on_delete=models.CASCADE, related_name="authored_posts"
     )
