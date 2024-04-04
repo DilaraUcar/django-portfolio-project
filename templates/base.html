@@ -35,7 +35,7 @@
 <body class="d-flex flex-column h-100 main-bg">
 
     <!-- Navigation -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <nav class="navbar navbar-expand-lg navbar-dark dark-backgr">
         <div class="container-fluid">
             <a class="navbar-brand" href="{% url 'home' %}">
                 <span class="logo-container">
@@ -64,19 +64,23 @@
 
     <!-- Footer -->
     <footer class="footer mt-auto">
-        <div class="row pt-2 px-4 bg-dark d-flex justify-content-between">
-            <div class="col-sm-6 d-flex nowrap justify-content-center justify-content-sm-start">
+        <div class="row pt-2 px-4 dark-backgr d-flex justify-content-between">
+            <div id="socials" class="col-sm-6 d-flex nowrap justify-content-center justify-content-sm-start">
                 <a href="https://github.com/DilaraUcar?tab=repositories" target="_blank" class="footer-links"
                     aria-label="Visit my GitHub in new tab">
-                    <i class="fab fa-github h3"></i>
+                    <i class="fab fa-github h2"></i>
                 </a>
                 <a href="https://www.linkedin.com/in/emil-jadersten/" target="_blank" class="footer-links"
                     aria-label="Visit my LinkedIn in new tab">
-                    <i class="fab fa-linkedin h3"></i>
+                    <i class="fab fa-linkedin h2"></i>
                 </a>
             </div>
             <div class="col-sm-6 text-nowrap text-center text-sm-end align-self-center">
-                <p class="text-white mx-4">© Dilara Ucar </p>
+                <p class="text-white mx-4">Made by Dilara Ucar </p>
+            </div>
+            <hr>
+            <div class="col-sm-12 text-center align-self-center">
+                <p class="text-white">Copyright © QuestHub {% now 'Y' %}</p>
             </div>
         </div>
     </footer>
