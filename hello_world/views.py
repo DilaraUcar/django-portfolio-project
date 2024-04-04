@@ -6,4 +6,4 @@ from .models import BlogPost
 class PostList(generic.ListView):
     queryset = BlogPost.objects.filter(status=1).order_by('-created_at')
     template_name = "index.html"
-    paginate_by = 10
+    paginate_by = 5
