@@ -4,7 +4,7 @@
 }
 
 p {
-    color: #fff;
+    color: #000;
 }
 
 a {
@@ -23,9 +23,8 @@ a {
 
 /*--------------------------------------------Posts */
 .card-body {
-    box-shadow: 0 0 7px 4px rgba(26, 46, 47, 0.7);
+    box-shadow: 0 0 7px 4px rgba(40, 106, 109, 0.7);
     border-radius: 35px 35px 35px 0;
-    background-color: rgba(46, 123, 127, 0.8);
 }
 
 .mb-4 {
@@ -36,8 +35,8 @@ a {
     padding: 20px 30px;
 }
 
-hr {
-    color: aliceblue;
+#hr-dark {
+    color: rgb(96, 96, 96);
 }
 
 .row {
@@ -45,15 +44,16 @@ hr {
 }
 
 .muted {
-    color: rgba(255, 255, 255, 0.5);
+    color: rgba(77, 77, 77, 0.5);
 }
 
 .post-link {
     text-decoration: none;
+    color: #000;
 }
 
 .post-link:hover {
-    color: #234345;
+    color: #2E7B7F;
 }
 
 .btn-style {
@@ -76,4 +76,8 @@ hr {
 
 i:hover {
     color: #000;
+}
+
+hr {
+    color: aliceblue;
 }

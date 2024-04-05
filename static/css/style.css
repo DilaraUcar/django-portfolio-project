@@ -4,7 +4,7 @@
 }
 
 p {
-    color: #fff;
+    color: #000;
 }
 
 a {
@@ -23,21 +23,20 @@ a {
 
 /*--------------------------------------------Posts */
 .card-body {
-    box-shadow: 0 0 7px 4px rgba(26, 46, 47, 0.7);
+    box-shadow: 0 0 7px 4px rgba(40, 106, 109, 0.7);
     border-radius: 35px 35px 35px 0;
-    background-color: rgba(46, 123, 127, 0.8);
 }
 
-.mb-4 {
-
+.mx-3 {
+    margin-left: 0rem !important;
 }
 
 .container {
     padding: 20px 30px;
 }
 
-hr {
-    color: aliceblue;
+.hr-dark {
+    color: rgb(96, 96, 96);
 }
 
 .row {
@@ -45,15 +44,16 @@ hr {
 }
 
 .muted {
-    color: rgba(255, 255, 255, 0.5);
+    color: rgba(77, 77, 77, 0.5);
 }
 
 .post-link {
     text-decoration: none;
+    color: #000;
 }
 
 .post-link:hover {
-    color: #234345;
+    color: #2E7B7F;
 }
 
 .btn-style {
@@ -67,6 +67,29 @@ hr {
     border: none;
 }
 
+.no-underline {
+    text-decoration: none;
+}
+
+.round {
+    border-radius: 50%; 
+    box-shadow: 0 0 5px 3px rgba(0, 0, 0, 0.2);
+    width: 100px; 
+    height: auto; 
+}
+
+.space {
+    padding: 10px 0 10px 20px;
+}
+
+.space-between {
+    padding-bottom: 15px;
+}
+
+#contain {
+    padding: 10px;
+}
+
 /*--------------------------------------------Footer */
 .footer-links {
     text-align: center;
@@ -76,4 +99,8 @@ hr {
 
 i:hover {
     color: #000;
+}
+
+hr {
+    color: aliceblue;
 }
