@@ -80,6 +80,11 @@
         </div>
     </nav>
     <main>
+        {% if user.is_authenticated %}
+        <p class="text-end m-3 text-muted">Hello {{ user }}!</p>
+        {% else %}
+        <p class="text-end m-3 text-muted">You are not logged in</p>
+        {% endif %}
         {% block content %}
         <!-- Content Goes here -->
         {% endblock content %}
