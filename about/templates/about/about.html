@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% block content %}
+{% load static %}
+
+<div class="container mt-5">
+  <div class="row">
+    <!-- Reordered the columns for medium and larger screens -->
+    <!-- Image column -->
+    <div class="col-md-auto text-center">
+      <img class="about-round about-img-space" src="{% static 'images/nobody.jpg' %}" width="75%" />
+    </div>
+    <!-- Text content column -->
+    <div class="col-md-8 order-md-2 text-center">
+      <!-- Title goes between these h2 tags -->
+      <h2>{{ about.heading }}</h2>
+      <!-- Content goes directly underneath this -->
+      {{ about.content | safe }}
+      <!-- Updated on field goes in here -->
+      <p class="text-end text-muted"><em>Updated on: {{ about.updated_at }}</em></p>
+    </div>
+  </div>
+</div>
+
+{% endblock content %}
