@@ -9,6 +9,7 @@ p {
 
 a {
     color: #fff;
+    text-decoration: none;
 }
 
 
@@ -73,7 +74,7 @@ a {
     text-decoration: none;
 }
 
-.round {
+#round {
     border-radius: 50%; 
     box-shadow: 0 0 5px 3px rgba(0, 0, 0, 0.2);
     width: 100px; 
