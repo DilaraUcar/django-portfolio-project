@@ -17,13 +17,14 @@ a {
     color: #fff;
     background-color: rgba(46, 123, 127, 0.9);
     padding: 10px;
-    width: 100px;
     text-align: center;
     box-shadow: 0 0 4px 2px rgba(26, 46, 47, 0.5);
     border: none;
 }
 
-.btn:hover {
+.btn:hover,
+.btn:active,
+.btn:focus {
     background-color: rgba(68, 174, 180, 0.9);
 }
 
@@ -49,6 +50,10 @@ label {
 
 .side-space {
     padding: 20px;
+}
+
+#id_content {
+    display: block;
 }
 
 /*--------------------------------------------Navigation */
@@ -105,6 +110,13 @@ label {
     margin-bottom: 10px;
 }
 
+.btn-style:hover,
+.btn-style:active,
+.btn-style:focus {
+    background-color: rgba(68, 174, 180, 0.9);
+    color: #fff;
+}
+
 .no-underline {
     text-decoration: none;
 }
@@ -126,6 +138,60 @@ label {
 
 #contain {
     padding: 10px;
+}
+
+.btn-close {
+    border-radius: 10px;
+    background-color: rgba(46, 123, 127, 1);
+    padding: 5px;
+    text-align: center;
+    box-shadow: 0 0 4px 2px rgba(26, 46, 47, 0.9);
+    border: 1px solid #234345;
+}
+
+#center-text {
+    padding: 10px 30px;
+}
+
+#bottom-space {
+    padding-bottom: 15px;
+}
+
+/* Comment section */
+.spacing {
+    padding: 20px 0;
+}
+
+.custom-card-body {
+    box-shadow: 0 0 7px 4px rgba(40, 106, 109, 0.7);
+    border-radius: 35px 35px 0px 35px;
+    width: fit-content;
+    margin: 0 auto;
+}
+
+#commentForm {
+    width: fit-content;
+}
+
+.custom-form-body {
+    box-shadow: 0 0 7px 4px rgba(40, 106, 109, 0.7);
+    border-radius: 35px 35px 0px 35px;
+    max-width: 500px;
+    margin: 0 auto;
+    padding-bottom: 30px;
+    display: block;
+}
+
+textarea {
+    width: 260px;
+}
+
+.space-top {
+    padding-top: 15px;
+}
+
+.center {
+    display: inline-block;
 }
 
 /*--------------------------------------------Footer */
@@ -163,7 +229,11 @@ hr {
     color: #000b7e;
 }
 
-/*--------------------------------------------------------------Signup Page */
-.custom-card-body {
-    width: max-content;
+/*--------------------------------------------------------------Media Queries */
+/* Larger width for custom form body on desktop */
+@media (min-width: 768px) {
+    .custom-form-body {
+        width: 70%; /* Adjust the width as needed */
+        margin: 0 auto; /* Center the element horizontally */
+    }
 }

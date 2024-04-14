@@ -1,44 +1,144 @@
-{% extends 'base.html' %} 
+{% extends 'base.html' %}
 {% block content %}
 {% load static %}
+{% load crispy_forms_tags %}
 
-<!-- Post info -->
-<div class="container">
-    <div class="mt-3">
-        <div class="card-body pt-3 pb-1">
-            <div class="row align-items-center">
-                <div class="col-md-auto text-center mb-3 mb-md-0">
+<!-- Post Info -->
+<div class="container mt-2">
+    <div class="row">
+        <div class="col mb-4 p-0 mx-auto">
+            <div class="container px-3 mb-1 card-body">
+                <div class="row mb-1">
                     <!-- Avatar -->
-                    <a href="#" class="author text-white">
-                        <!-- If user has no avatar, use placeholder -->
-                        <img id="round" src="{% static 'images/nobody.jpg' %}" alt="Avatar">
-                    </a>
-                </div>
-                <div class="col-md-10">
-                    <!-- Title, author, time of post -->
-                    <div class="mx-3">
-                        <h2 class="post-title text-dark my-2 space">{{ post.heading }}</h2>
-                        <p class="post-subtitle text-fade my-1">
-                            <a href="#" class="space link font-weight-bold h5 text-dark no-underline">
-                                {{ post.writer }}
-                            </a>
-                            <small>| {{ post.created_at }}</small>
-                        </p>
+                    <div class="col-sm-2 col-lg-1 pt-2 px-2 text-center">
+                        <a href="#" class="author text-white">
+                            <!-- If user has no avatar, use placeholder -->
+                            <img id="round" src="
+                            {% static 'images/nobody.jpg' %}">
+                        </a>
                     </div>
-                </div>
-            </div>
-            <!-- Post content -->
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="post-content text-muted p-3">
-                        {{ post.content | safe | linebreaks }}
-                        {% if post.posted_at != post.updated_at %}
-                        <small class="mx-1">Updated on {{ post.updated_at }}</small>
-                        {% endif %}
+                    <div class="col-sm-10 col-lg-11 px-3 px-lg-5">
+                        <!-- Title, author, time of post -->
+                        <p class="text-fade small mb-0 spacing">
+                            <a href="#" class="font-weight-bold text-dark h6 text-fade">
+                                {{ post.writer }} |
+                            </a>
+                            <small>{{ post.created_at }}</small>
+                        </p>
+                        <h2 class="post-title text-dark">{{ post.heading }}</h2>
+                        <!-- Post content -->
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="post-content text-muted">
+                                    {{ post.content | safe | linebreaks }}
+                                    {% if post.posted_at != post.updated_at %}
+                                    {% endif %}
+                                    <hr class="hr-dark">
+                                    <!-- Displaying count of comments -->
+                                    <div class="row justify-content-between">
+                                        <div class="col-auto">
+                                            <small>Updated on {{ post.updated_at }}</small>
+                                        </div>
+                                        <div class="col-auto">
+                                            <strong class="text-secondary">
+                                                <i class="far fa-comments"></i> {{ comment_count }}
+                                            </strong>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
+<!-- Post a Comment -->
+<div class="container">
+    <div class="row">
+        <div id="bottom-space" class="col-6 mx-auto text-center">
+            <button id="posting-button" class="btn btn-primary px-4 col-m-6 mx-auto" onclick="openForm()">
+                Write a Comment
+            </button>
+        </div>
+    </div>
+    <div class="row justify-content-center" id="posting-form" style="display: none;">
+        <div class="col-12 mb-3 mt-3">
+            <div class="custom-form-body text-center">
+                <button id="close-form" onclick="closeForm()" class="btn-close btn-close-dark"></button>
+                {% if user.is_authenticated %}
+                <h4 class="text-dark space-top">Write a comment <span class="h6 text-fade">as {{ user.username }}</span>
+                </h4>
+                <div class="center">
+                    <form id="commentForm" method="post" style="margin-top: 1.3em;">
+                        {{ comment_form }}
+                        {% csrf_token %}
+                        <div class="space-top">
+                            <button id="submitButton" type="submit" class="btn btn-primary btn-lg">Submit</button>
+                        </div>
+                    </form>
+                </div>
+                {% else %}
+                <div id="center-text">
+                    <p class="text-dark text-center">You must log in to leave a comment.</p>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Comments -->
+<div class="container mt-2">
+    <div class="row">
+        <div class="col mb-4 p-0 mx-auto">
+            <!-- Iterate through each comment in comments -->
+            {% for comment in comments %}
+            <div class="container px-3 mb-1 custom-card-body {% if comment.is_sticky %}sticky{% endif %}">
+                <div class="row mb-1">
+                    <!-- Avatar -->
+                    <div class="col-sm-2 col-lg-1 pt-2 px-2 text-center">
+                        <a href="#" class="author text-white">
+                            <!-- If user has no avatar, use placeholder -->
+                            <img id="round" src="
+                            {% static 'images/nobody.jpg' %}">
+                        </a>
+                    </div>
+                    <div class="col-sm-10 col-lg-11 px-3 px-lg-5">
+                        <!-- Comment info (author, time of post) -->
+                        <p class="text-fade small mb-0 spacing">
+                            <a href="#" class="font-weight-bold text-dark h6 text-fade">
+                                {{ comment.commenter }} |
+                            </a>
+                            {{ comment.created_at }}
+                        </p>
+                        <!-- Comment body -->
+                        <div class="text-white post-body" id="comment{{ comment.id }}">
+                            {{ comment.content | safe | linebreaks}}
+                            <hr class="hr-dark">
+                            <div class="mb-1">
+                                {% if comment.created != comment.updated_at %}
+                                <p><small class="text-fade text-muted">Updated on {{ comment.updated_at }}</small>
+                                </p>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+</div>
+<!-- JavaScript functions for form -->
+<script>
+    function openForm() {
+        document.getElementById("posting-form").style.display = "block";
+    }
+
+    function closeForm() {
+        document.getElementById("posting-form").style.display = "none";
+    }
+</script>
 {% endblock content %}
