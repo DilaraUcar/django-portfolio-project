@@ -52,11 +52,11 @@
     <ul class="pagination justify-content-center">
         {% if page_obj.has_previous %}
         <li>
-            <a href="?page={{ page_obj.previous_page_number }}" class="page-link btn-style">&laquo; PREV</a>
+            <a href="?page={{ page_obj.previous_page_number }}" class="page-link btn-style"><i class="fa-solid fa-chevron-left"></i> PREV</a>
         </li>
         {% endif %}
         {% if page_obj.has_next %}
-        <li><a href="?page={{ page_obj.next_page_number }}" class="page-link btn-style"> NEXT &raquo;</a></li>
+        <li><a href="?page={{ page_obj.next_page_number }}" class="page-link btn-style"><i class="fa-solid fa-chevron-right"></i> NEXT </a></li>
         {% endif %}
     </ul>
 </nav>

@@ -10,7 +10,7 @@
             <div class="container px-3 mb-1 card-body">
                 <div class="row mb-1">
                     <!-- Avatar -->
-                    <div class="col-sm-2 col-lg-1 pt-2 px-2 text-center">
+                    <div class="col-sm-2 col-lg-1 pt-md-3 text-center">
                         <a href="#" class="author text-white">
                             <!-- If user has no avatar, use placeholder -->
                             <img id="round" src="
@@ -58,20 +58,20 @@
 <div class="container">
     <div class="row">
         <div id="bottom-space" class="col-6 mx-auto text-center">
-            <button id="posting-button" class="btn btn-primary px-4 col-m-6 mx-auto" onclick="openForm()">
+            <button id="posting-button" class="btn page-link btn-primary px-4 col-m-6 mx-auto" onclick="openForm()">
                 Write a Comment
             </button>
         </div>
     </div>
     <div class="row justify-content-center" id="posting-form" style="display: none;">
         <div class="col-12 mb-3 mt-3">
-            <div class="custom-form-body text-center">
+            <div class="pt-2 pb-3 custom-form-body text-center">
                 <button id="close-form" onclick="closeForm()" class="btn-close btn-close-dark"></button>
                 {% if user.is_authenticated %}
                 <h4 class="text-dark space-top">Write a comment <span class="h6 text-fade">as {{ user.username }}</span>
                 </h4>
                 <div class="center">
-                    <form id="commentForm" method="post" style="margin-top: 1.3em;">
+                    <form id="commentForm" method="post">
                         {{ comment_form }}
                         {% csrf_token %}
                         <div class="space-top">
@@ -80,7 +80,7 @@
                     </form>
                 </div>
                 {% else %}
-                <div id="center-text">
+                <div class="text-center">
                     <p class="text-dark text-center">You must log in to leave a comment.</p>
                 </div>
                 {% endif %}
@@ -94,10 +94,10 @@
         <div class="col mb-4 p-0 mx-auto">
             <!-- Iterate through each comment in comments -->
             {% for comment in comments %}
-            <div class="container px-3 mb-1 custom-card-body {% if comment.is_sticky %}sticky{% endif %}">
+            <div class="container px-3 mb-1 custom-comment-body {% if comment.is_sticky %}sticky{% endif %}">
                 <div class="row mb-1">
                     <!-- Avatar -->
-                    <div class="col-sm-2 col-lg-1 pt-2 px-2 text-center">
+                    <div class="col-sm-2 col-lg-1 pt-md-3 text-center">
                         <a href="#" class="author text-white">
                             <!-- If user has no avatar, use placeholder -->
                             <img id="round" src="
@@ -141,4 +141,5 @@
         document.getElementById("posting-form").style.display = "none";
     }
 </script>
+
 {% endblock content %}
