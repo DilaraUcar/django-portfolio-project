@@ -9,7 +9,7 @@ class PostList(generic.ListView):
     queryset = BlogPost.objects.filter(status=1).order_by('-created_at')
     template_name = "index.html"
 
-    # Display 10 posts per page
+    # Display 5 posts per page
     paginate_by = 5
 
 def post_detail(request, slug):
@@ -29,21 +29,22 @@ def post_detail(request, slug):
     queryset = BlogPost.objects.filter(status=1)
     post = get_object_or_404(queryset, slug=slug)
     comments = post.comments.all().order_by("created_at")
-    comment_count = post.comments.all().count()
+    comment_count = post.comments.count()
 
     if request.method == "POST":
         comment_form = CommentForm(data=request.POST)
         if comment_form.is_valid():
             comment = comment_form.save(commit=False)
-            comment.writer = request.user
-            comment.post = post
+            comment.commenter = request.user
+            comment.blog_post = post
             comment.save()
             messages.add_message(
-                request, messages.SUCCESS,
-                'Comment is submitted'
-                )
+                request, messages.SUCCESS, 'Comment submitted successfully'
+            )
+            comment_form = CommentForm()  # Reset form after successful submission
+    else:
+        comment_form = CommentForm()  # Form for GET request
 
-    comment_form = CommentForm()
 
     return render(
         request,

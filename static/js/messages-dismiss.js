@@ -5,5 +5,5 @@ document.addEventListener('DOMContentLoaded', function () {
             let bsAlert = new bootstrap.Alert(alert);
             bsAlert.close();
         });
-    }, 4000); // 4000ms = 4 seconds
+    }, 3000); // 3000ms = 3 seconds
 });

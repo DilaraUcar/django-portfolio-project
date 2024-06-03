@@ -72,7 +72,7 @@
                 </h4>
                 <div class="center">
                     <form id="commentForm" method="post">
-                        {{ comment_form }}
+                        {{ comment_form | crispy }}
                         {% csrf_token %}
                         <div class="space-top">
                             <button id="submitButton" type="submit" class="btn btn-primary btn-lg">Submit</button>
