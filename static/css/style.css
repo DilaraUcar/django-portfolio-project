@@ -293,3 +293,10 @@ hr {
         max-width: 210px;
     }
 }
+
+/* Custom CSS to center text on mobile */
+@media (max-width: 576px) {
+    .text-center-mobile {
+      text-align: center !important;
+    }
+  }

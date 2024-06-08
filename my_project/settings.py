@@ -52,6 +52,7 @@ INSTALLED_APPS = [
     'hello_world',
     'my_project',
     'about',
+    'user_profile',
 ]
 
 SITE_ID = 1
