@@ -13,8 +13,11 @@
                     <div class="col-sm-2 col-lg-1 pt-md-3 text-center">
                         <a href="#" class="author text-white">
                             <!-- If user has no avatar, use placeholder -->
-                            <img id="round" src="
-                            {% static 'images/nobody.jpg' %}">
+                            {% if post.writer.profile.avatar.url != '/media/images/nobody.jpg' %}
+                            <img id="round" src="{{ post.writer.profile.avatar.url }}" alt="Avatar">
+                            {% else %}
+                            <img id="round" src="{% static 'images/nobody.jpg' %}" alt="Avatar">
+                            {% endif %}
                         </a>
                     </div>
                     <div class="col-sm-10 col-lg-11 px-3 px-lg-5">
@@ -100,8 +103,11 @@
                     <div class="col-sm-2 col-lg-1 pt-md-3 text-center">
                         <a href="#" class="author text-white">
                             <!-- If user has no avatar, use placeholder -->
-                            <img id="round" src="
-                            {% static 'images/nobody.jpg' %}">
+                            {% if post.writer.profile.avatar.url != '/media/images/nobody.jpg' %}
+                            <img id="round" src="{{ post.writer.profile.avatar.url }}" alt="Avatar">
+                            {% else %}
+                            <img id="round" src="{% static 'images/nobody.jpg' %}" alt="Avatar">
+                            {% endif %}
                         </a>
                     </div>
                     <div class="col-sm-10 col-lg-11 px-3 px-lg-5">

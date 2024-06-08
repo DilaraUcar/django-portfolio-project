@@ -7,15 +7,17 @@
         <!-- Profile info -->
         <div class="col mt-4 text-dark">
             <div class="text-center mb-4">
-                <h1 class="text-uppercase">{{ profile.user.username }}{% if profile.user.is_staff %} (Admin){% endif %}
-                </h1>
+                <h2 class="text-uppercase">{{ profile.user.username }}{% if profile.user.is_staff %} (Admin){% endif %}
+                </h2>
                 <!-- If user has no avatar, use placeholder -->
-                <img src="
-                {% if 'placeholder' in profile.avatar.url %}
-                {% static 'images/nobody.jpg' %}
-                {% else %}
+                <img class="about-round" src="
+                {% if profile.avatar.url %}
                 {{ profile.avatar.url }}
-                {% endif %}" alt="{{ profile.user }}'s avatar." width=300 height="300">
+                {% else %}
+                {% static 'images/nobody.jpg' %}
+                {% endif %}" 
+                alt="{{ profile.user }}'s avatar." width="300" height="300">
+
             </div>
             <!-- "About me" section -->
             <div id="about">
@@ -23,7 +25,7 @@
                 {{ profile.about | safe }}
                 {% if profile.user == user %}
                 <!-- Edit and delete profile -->
-                <button class="btn btn-primary px-4 mx-auto" onclick="editAbout()">
+                <button class="btn btn-style px-4 mx-auto" onclick="editAbout()">
                     Edit profile
                 </button>
                 {% endif %}
@@ -41,10 +43,10 @@
             </div>
         </div>
     </div>
-    <div class="container mb-3">
-        <div class="row">
+    <div class="container card-body mb-3">
+        <div class="row text-center">
             <div class="col-lg-6 text-white mt-1">
-                <h3 class="text-fade bg-dark p-2 mb-0">Posts by {{profile.user.username}}</h3>
+                <h3 class="text-fade bg-dark p-2 mb-0">Your Posts</h3>
                 <div class="p-3 mt-0 posts-wrapper">
                     {% for post in posts %}
                     <a href="{% url 'post_detail' post.slug %}" class="post-link">
@@ -56,12 +58,12 @@
                         </div>
                     </a>
                     {% empty %}
-                    <p>No posts found.</p>
+                    <p class="text-muted">No Posts...</p>
                     {% endfor %}
                 </div>
             </div>
             <div class="col-lg-6 text-white mt-1">
-                <h3 class="text-fade bg-dark p-2 mb-0">Comments by {{profile.user.username}}</h3>
+                <h3 class="text-fade bg-dark p-2 mb-0">Your Comments</h3>
                 <div class="p-3 mt-0 posts-wrapper">
                     {% for comment in comments %}
                     <a href="{% url 'post_detail' comment.post.slug %}" class="post-link">
@@ -76,18 +78,18 @@
                         </div>
                     </a>
                     {% empty %}
-                    <p>No comments found.</p>
+                    <p class="text-muted">No Comments...</p>
                     {% endfor %}
                 </div>
             </div>
         </div>
-        {% if profile.user == user %}
-        <!-- Delete profile -->
-        <button id="btn-delete" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteAccountModal">
-            Delete Account
-        </button>
-        {% endif %}
     </div>
+    {% if profile.user == user %}
+    <!-- Delete profile -->
+    <button id="btn-delete" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteAccountModal">
+        Delete Account
+    </button>
+    {% endif %}
 </div>
 
 <!-- Delete confirmation modal -->
@@ -105,7 +107,8 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-primary text-uppercase" data-bs-dismiss="modal">Cancel</button>
-                <button type="button" class="btn btn-danger text-uppercase" data-bs-dismiss="modal" id="confirmDelete">Delete</button>
+                <button type="button" class="btn btn-danger text-uppercase" data-bs-dismiss="modal"
+                    id="confirmDelete">Delete</button>
             </div>
         </div>
     </div>

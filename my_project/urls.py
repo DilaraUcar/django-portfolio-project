@@ -16,7 +16,9 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from about import views as about_views 
+from about import views as about_views
+from django.conf import settings
+from django.conf.urls.static import static 
 
 
 urlpatterns = [
@@ -26,4 +28,4 @@ urlpatterns = [
     path('summernote/', include('django_summernote.urls')),
     path("", include("user_profile.urls"), name="profile-urls"),
     path("", include("hello_world.urls"), name="hello_world"),
-]
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
