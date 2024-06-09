@@ -113,6 +113,14 @@ label {
     padding-left: 5px;
 }
 
+.post-form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
 /*--------------------------------------------Posts */
 
 .mx-3 {

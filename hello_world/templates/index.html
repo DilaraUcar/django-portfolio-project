@@ -21,75 +21,94 @@
                 </div>
                 <!-- Post a Thread -->
                 <div class="col-12 col-md-auto d-flex justify-content-center justify-content-md-end mt-2 flex-grow-0">
-                    <button id="posting-button" class="btn btn-primary px-4 mx-auto mx-sm-3 mt-2"
-                        style="white-space: nowrap" onclick="openForm()">
+                    <button id="posting-button" class="btn btn-primary px-4 mx-auto mx-sm-3 mt-2" style="white-space: nowrap">
                         New Post
                     </button>
                 </div>
             </div>
-
-            <!-- Blog Entries Column -->
-            <div class="col-12 mt-3 left">
-                {% for post in object_list %}
-                <div class="mb-4">
-                    <div class="card-body container">
+        </div>
+    </div>
+    
+    <!-- Add a Post form -->
+    <div class="row" id="post-form-container" style="display: none;">
+        <div class="col mb-3 mt-3">
+            <div class="card-body text-center">
+                <button id="close-form" class="btn-close btn-close-white"></button>
+                {% if user.is_authenticated %}
+                <h4 class="text-dark">
+                    What's on your mind, <span class="text-fade"> {{ user.username }}?</span>
+                </h4>
+                <form id="postForm" class="post-form" method="post" style="margin-top: 1.3em;" action="{% url 'create_post' %}">
+                    {{ form.as_p }}
+                    {% csrf_token %}
+                    <button id="submitButton" type="submit" class="btn btn-primary btn-lg">Submit</button>
+                </form>
+                {% else %}
+                <p class="text-dark">You must log in to post a thread.</p>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+    
+    <!-- Blog Entries Column -->
+    <div class="col-12 mt-3 left">
+        {% for post in object_list %}
+        <div class="mb-4">
+            <div class="card-body container">
+                <div class="row">
+                    <!-- Avatar -->
+                    <div class="col-3 col-md-3 col-lg-2 d-none d-sm-block">
+                        <a href="#" class="author text-white my-0 py-0">
+                            <!-- If user has no avatar, use placeholder -->
+                            {% if post.writer.profile.avatar.url != '/media/nobody.jpg' %}
+                            <img id="round" src="{{ post.writer.profile.avatar.url }}" alt="Avatar">
+                            {% else %}
+                            <img id="round" src="{% static 'images/nobody.jpg' %}" alt="Avatar">
+                            {% endif %}
+                        </a>
+                    </div>
+                    <div class="col">
                         <div class="row">
-                            <!-- Avatar -->
-                            <div class="col-3 col-md-3 col-lg-2 d-none d-sm-block">
-                                <a href="#" class="author text-white my-0 py-0">
-                                    <!-- If user has no avatar, use placeholder -->
-                                    {% if post.writer.profile.avatar.url != '/media/nobody.jpg' %}
-                                    <img id="round" src="{{ post.writer.profile.avatar.url }}" alt="Avatar">
-                                    {% else %}
-                                    <img id="round" src="{% static 'images/nobody.jpg' %}" alt="Avatar">
-                                    {% endif %}
+                            <div class="col">
+                                <a href="{% url 'post_detail' post.slug %}" class="post-link">
+                                    <h2 class="card-title">{{ post.heading }}</h2>
                                 </a>
-                            </div>
-                            <div class="col">
-                                <div class="row">
-                                    <div class="col">
-                                        <a href="{% url 'post_detail' post.slug %}" class="post-link">
-                                            <h2 class="card-title">{{ post.heading }}</h2>
-                                        </a>
-                                        <p class="author font-weight-bold">{{ post.writer }}</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <hr class="hr-dark" />
-                        <div class="row">
-                            <div class="col">
-                                <p class="card-text muted h6">{{ post.created_at}}</p>
+                                <p class="author font-weight-bold">{{ post.writer }}</p>
                             </div>
                         </div>
                     </div>
                 </div>
-                {% if forloop.counter|divisibleby:3 %}
-            </div>
-            <div class="row">
-                {% endif %}
-                {% endfor %}
+                <hr class="hr-dark" />
+                <div class="row">
+                    <div class="col">
+                        <p class="card-text muted h6">{{ post.created_at}}</p>
+                    </div>
+                </div>
             </div>
         </div>
+        {% if forloop.counter|divisibleby:3 %}
     </div>
-    {% if is_paginated %}
-    <nav aria-label="Page navigation">
-        <ul class="pagination justify-content-center">
-            {% if page_obj.has_previous %}
-            <li>
-                <a href="?page={{ page_obj.previous_page_number }}" class="page-link btn-style"><i
-                        class="fa-solid fa-chevron-left"></i> PREV</a>
-            </li>
-            {% endif %}
-            {% if page_obj.has_next %}
-            <li><a href="?page={{ page_obj.next_page_number }}" class="page-link btn-style"><i
-                        class="fa-solid fa-chevron-right"></i> NEXT </a></li>
-            {% endif %}
-        </ul>
-    </nav>
-    {% endif %}
+    <div class="row">
+        {% endif %}
+        {% endfor %}
+    </div>
 </div>
 
+<!-- Pagination -->
+{% if is_paginated %}
+<nav aria-label="Page navigation">
+    <ul class="pagination justify-content-center">
+        {% if page_obj.has_previous %}
+        <li>
+            <a href="?page={{ page_obj.previous_page_number }}" class="page-link btn-style"><i class="fa-solid fa-chevron-left"></i> PREV</a>
+        </li>
+        {% endif %}
+        {% if page_obj.has_next %}
+        <li><a href="?page={{ page_obj.next_page_number }}" class="page-link btn-style"><i class="fa-solid fa-chevron-right"></i> NEXT </a></li>
+        {% endif %}
+    </ul>
+</nav>
+{% endif %}
 <!-- index.html content ends here -->
 
 {% endblock %}

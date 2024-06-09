@@ -1,8 +1,9 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 from django.views import generic
 from django.contrib import messages
 from .models import BlogPost
-from .forms import CommentForm
+from .forms import BlogPostForm, CommentForm
+from django.utils.text import slugify
 
 # Create your views here.
 class PostList(generic.ListView):
@@ -11,6 +12,27 @@ class PostList(generic.ListView):
 
     # Display 5 posts per page
     paginate_by = 5
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['form'] = BlogPostForm()
+        return context
+
+
+def create_post(request):
+    if request.method == "POST":
+        form = BlogPostForm(request.POST)
+        if form.is_valid():
+            post = form.save(commit=False)
+            post.writer = request.user
+            post.status = 1  # Set status to Published
+            post.slug = slugify(post.heading)  # Generate unique slug based on heading
+            post.save()
+            messages.success(request, 'Post created successfully.')
+            return redirect('post_detail', slug=post.slug)  # Redirect to post_detail with the slug of the newly created post
+    else:
+        form = BlogPostForm()
+    return render(request, 'index.html', {'form': form})
 
 def post_detail(request, slug):
     """
