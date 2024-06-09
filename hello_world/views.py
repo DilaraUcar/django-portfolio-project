@@ -1,23 +1,32 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.views import generic
 from django.contrib import messages
+from django.db.models import Q
 from .models import BlogPost
 from .forms import BlogPostForm, CommentForm
 from django.utils.text import slugify
 
-# Create your views here.
 class PostList(generic.ListView):
-    queryset = BlogPost.objects.filter(status=1).order_by('-created_at')
+    model = BlogPost
     template_name = "index.html"
-
-    # Display 5 posts per page
     paginate_by = 5
+
+    def get_queryset(self):
+        queryset = BlogPost.objects.filter(status=1).order_by('-created_at')
+        query = self.request.GET.get('search')
+        if query:
+            queryset = queryset.filter(
+                Q(heading__icontains=query) |
+                Q(content__icontains=query) |
+                Q(writer__username__icontains=query)
+            )
+        return queryset
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['form'] = BlogPostForm()
+        context['search_term'] = self.request.GET.get('search', '')
         return context
-
 
 def create_post(request):
     if request.method == "POST":
@@ -35,19 +44,6 @@ def create_post(request):
     return render(request, 'index.html', {'form': form})
 
 def post_detail(request, slug):
-    """
-    Display an individual :model:`hello_world.BlogPost`.
-
-    **Context**
-
-    ``post``
-        An instance of :model:`hello_world.BlogPost`.
-
-    **Template:**
-
-    :template:`hello_world/post_detail.html`
-    """
-
     queryset = BlogPost.objects.filter(status=1)
     post = get_object_or_404(queryset, slug=slug)
     comments = post.comments.all().order_by("created_at")
@@ -67,13 +63,13 @@ def post_detail(request, slug):
     else:
         comment_form = CommentForm()  # Form for GET request
 
-
     return render(
         request,
         "hello_world/post_detail.html",
-        {"post": post,
-        "comments": comments,
-        "comment_count": comment_count,
-        "comment_form": comment_form,
-        },   
+        {
+            "post": post,
+            "comments": comments,
+            "comment_count": comment_count,
+            "comment_form": comment_form,
+        }
     )

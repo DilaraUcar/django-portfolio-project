@@ -2,91 +2,101 @@
 {% load static %}
 
 {% block content %}
-<div class="container mt-5 margin-space card-body">
-    <div class="row text-center">
-        <!-- Profile info -->
-        <div class="col mt-4 text-dark">
-            <div class="text-center mb-4">
-                <h2 class="text-uppercase">{{ profile.user.username }}{% if profile.user.is_staff %} (Admin){% endif %}
-                </h2>
-                <!-- If user has no avatar, use placeholder -->
-                <img class="about-round"
-                    src="{% if profile.avatar and profile.avatar.url %}{{ profile.avatar.url }}{% else %}{% static 'images/nobody.jpg' %}{% endif %}"
-                    alt="{{ profile.user }}'s avatar." width="300" height="300">
-            </div>
-            <!-- "About me" section -->
-            <div id="about">
-                {{ profile.about|safe }}
-                <hr>
-                {% if profile.user == user %}
-                <!-- Edit and delete profile -->
-                <button id="edit-btn" class="btn btn-style px-4 mx-auto">
-                    Edit profile
-                </button>
-                {% endif %}
-            </div>
-            <!-- Edit profile form -->
-            <div id="edit-about" style="display: none;">
-                <form id="edit-form" method="post" enctype="multipart/form-data" class="summernote-form">
-                    {% csrf_token %}
-                    {{ profile_form.as_p }}
-                    <div class="pb-3">
-                        <button type="submit" class="btn btn-primary px-4 mx-auto">Save changes</button>
-                        <button type="button" class="btn btn-secondary px-4 mx-auto">
-                            Cancel
-                        </button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-    <div class="container mb-3 post-comment-container">
+<div class="side-space">
+    <div class="container mt-5 margin-space card-body">
         <div class="row text-center">
-            <div class="col-lg-6 text-white mt-1">
-                <h3 class="text-fade bg-dark p-2 mb-0">Your Posts</h3>
-                <div class="p-3 mt-0 posts-wrapper">
-                    {% for post in posts %}
-                    <a href="{% url 'post_detail' post.slug %}" class="post-link">
-                        <div class="card bg-dark mb-1">
-                            <div class="card-body">
-                                <h5 class="card-title">{{ post.title|safe }}</h5>
-                                {{ post.body|safe|linebreaks }}
-                            </div>
-                        </div>
-                    </a>
-                    {% empty %}
-                    <p class="text-muted">No Posts...</p>
-                    {% endfor %}
+            <!-- Profile info -->
+            <div class="col mt-4 text-dark">
+                <div class="text-center mb-4">
+                    <h2 class="text-uppercase">{{ profile.user.username }}{% if profile.user.is_staff %}
+                        (Admin){% endif %}
+                    </h2>
+                    <!-- If user has no avatar, use placeholder -->
+                    <img class="about-round"
+                        src="{% if profile.avatar and profile.avatar.url %}{{ profile.avatar.url }}{% else %}{% static 'images/nobody.jpg' %}{% endif %}"
+                        alt="{{ profile.user }}'s avatar." width="225" height="225">
                 </div>
-            </div>
-            <div class="col-lg-6 text-white mt-1">
-                <h3 class="text-fade bg-dark p-2 mb-0">Your Comments</h3>
-                <div class="p-3 mt-0 posts-wrapper">
-                    {% for comment in comments %}
-                    <a href="{% url 'post_detail' comment.post.slug %}" class="post-link">
-                        <div class="card bg-dark mb-1">
-                            <div class="card-body">
-                                <h5 class="card-title">
-                                    {{ comment.post.title|safe }}
-                                    <span class="h6"> by {{ comment.post.writer }}</span>
-                                </h5>
-                                <p class="card-text">{{ comment.body|safe|linebreaks }}</p>
-                            </div>
+                <!-- "About me" section -->
+                <div id="about">
+                    <h4 class="text-uppercase underline">About Me</h4>
+                    {{ profile.about|safe }}
+                    <hr>
+                    {% if profile.user == user %}
+                    <!-- Edit and delete profile -->
+                    <button id="edit-btn" class="btn btn-style px-4 mx-auto">
+                        Edit profile
+                    </button>
+                    {% endif %}
+                </div>
+                <!-- Edit profile form -->
+                <div id="edit-about" style="display: none;">
+                    <form id="edit-form" method="post" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <div class="form-group mb-3">
+                            <label for="id_about">About Me</label>
+                            <textarea class="form-control" id="id_about" name="about"
+                                rows="5">{{ profile.about }}</textarea>
                         </div>
-                    </a>
-                    {% empty %}
-                    <p class="text-muted">No Comments...</p>
-                    {% endfor %}
+                        <div class="pb-3">
+                            <button type="submit" class="btn btn-primary px-4 mx-auto">Save changes</button>
+                            <button type="button" class="btn btn-secondary px-4 mx-auto">
+                                Cancel
+                            </button>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
+        <div class="container mb-3 post-comment-container">
+            <div class="row text-center">
+                <div class="col-lg-6 text-white mt-1">
+                    <h3 class="text-fade bg-dark p-2 mb-0">Your Posts</h3>
+                    <div class="p-3 mt-0 posts-wrapper">
+                        {% for post in posts %}
+                        <a href="{% url 'post_detail' post.slug %}" class="post-link">
+                            <div class=" mb-1">
+                                <div class="card-body">
+                                    <h5 class="card-title">{{ post.heading|safe }}</h5>
+                                    {{ post.content|safe|linebreaks }}
+                                </div>
+                            </div>
+                        </a>
+                        {% empty %}
+                        <p class="text-muted">No Posts...</p>
+                        {% endfor %}
+                    </div>
+                </div>
+                <div class="col-lg-6 text-white mt-1">
+                    <h3 class="text-fade bg-dark p-2 mb-0">Your Comments</h3>
+                    <div class="p-3 mt-0 posts-wrapper">
+                        {% for comment in comments %}
+                        <a href="{% url 'post_detail' comment.post.slug %}" class="post-link">
+                            <div class="card bg-dark mb-1">
+                                <div class="card-body">
+                                    <h5 class="card-title">
+                                        {{ comment.post.title|safe }}
+                                        <span class="h6"> by {{ comment.post.writer }}</span>
+                                    </h5>
+                                    <p class="card-text">{{ comment.body|safe|linebreaks }}</p>
+                                </div>
+                            </div>
+                        </a>
+                        {% empty %}
+                        <p class="text-muted">No Comments...</p>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% if profile.user == user %}
+        <!-- Delete profile -->
+        <div class="text-center">
+            <button id="btn-delete" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteAccountModal">
+                Delete Account
+            </button>
+        </div>
+        {% endif %}
     </div>
-    {% if profile.user == user %}
-    <!-- Delete profile -->
-    <button id="btn-delete" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteAccountModal">
-        Delete Account
-    </button>
-    {% endif %}
 </div>
 
 <!-- Delete confirmation modal -->

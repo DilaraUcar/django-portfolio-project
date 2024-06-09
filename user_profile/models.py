@@ -24,7 +24,6 @@ class ProfileAdmin(admin.ModelAdmin):
 
 
 # Create user profile when user is created
-# https://simpleisbetterthancomplex.com/tutorial/2016/07/22/how-to-extend-django-user-model.html#onetoone
 @receiver(post_save, sender=User)
 def create_user_profile(sender, instance, created, **kwargs):
     if created:
