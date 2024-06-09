@@ -100,9 +100,9 @@
     </div>
     <main>
         {% if user.is_authenticated %}
-            <p class="text-end m-3 mb-0 mt-0 text-muted">Hello {{ user }}!</p>
-            {% else %}
-            <p class="text-end m-3 mb-0 mt-0 text-muted">You are not logged in</p>
+        <p class="text-end m-3 mb-0 mt-0 text-muted">Hello {{ user }}!</p>
+        {% else %}
+        <p class="text-end m-3 mb-0 mt-0 text-muted">You are not logged in</p>
         {% endif %}
         {% block content %}
         <!-- Content Goes here -->
@@ -141,6 +141,9 @@
 
     <!-- Custom JS to auto-dismiss messages -->
     <script src="{% static 'js/messages-dismiss.js' %}"></script>
+
+    <script src="{% static 'js/profile.js' %}"></script>
+
 </body>
 
 </html>

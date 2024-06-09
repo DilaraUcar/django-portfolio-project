@@ -10,40 +10,37 @@
                 <h2 class="text-uppercase">{{ profile.user.username }}{% if profile.user.is_staff %} (Admin){% endif %}
                 </h2>
                 <!-- If user has no avatar, use placeholder -->
-                <img class="about-round" src="
-                {% if profile.avatar.url %}
-                {{ profile.avatar.url }}
-                {% else %}
-                {% static 'images/nobody.jpg' %}
-                {% endif %}" 
-                alt="{{ profile.user }}'s avatar." width="300" height="300">
-
+                <img class="about-round"
+                    src="{% if profile.avatar and profile.avatar.url %}{{ profile.avatar.url }}{% else %}{% static 'images/nobody.jpg' %}{% endif %}"
+                    alt="{{ profile.user }}'s avatar." width="300" height="300">
             </div>
             <!-- "About me" section -->
             <div id="about">
-                <small>Info</small>
-                {{ profile.about | safe }}
+                {{ profile.about|safe }}
+                <hr>
                 {% if profile.user == user %}
                 <!-- Edit and delete profile -->
-                <button class="btn btn-style px-4 mx-auto" onclick="editAbout()">
+                <button id="edit-btn" class="btn btn-style px-4 mx-auto">
                     Edit profile
                 </button>
                 {% endif %}
             </div>
             <!-- Edit profile form -->
-            <div id="edit-about">
-                <form method="post" enctype="multipart/form-data">
-                    {{ profile_form.as_p }}
+            <div id="edit-about" style="display: none;">
+                <form id="edit-form" method="post" enctype="multipart/form-data" class="summernote-form">
                     {% csrf_token %}
-                    <button type="submit" class="btn btn-primary px-4 mx-auto">Save changes</button>
-                    <button type="button" class="btn btn-primary px-4 mx-auto" onclick="cancelEdit()">
-                        Cancel
-                    </button>
+                    {{ profile_form.as_p }}
+                    <div class="pb-3">
+                        <button type="submit" class="btn btn-primary px-4 mx-auto">Save changes</button>
+                        <button type="button" class="btn btn-secondary px-4 mx-auto">
+                            Cancel
+                        </button>
+                    </div>
                 </form>
             </div>
         </div>
     </div>
-    <div class="container card-body mb-3">
+    <div class="container mb-3 post-comment-container">
         <div class="row text-center">
             <div class="col-lg-6 text-white mt-1">
                 <h3 class="text-fade bg-dark p-2 mb-0">Your Posts</h3>
@@ -52,8 +49,8 @@
                     <a href="{% url 'post_detail' post.slug %}" class="post-link">
                         <div class="card bg-dark mb-1">
                             <div class="card-body">
-                                <h5 class="card-title">{{ post.title | safe }}</h5>
-                                {{ post.body | safe | linebreaks }}
+                                <h5 class="card-title">{{ post.title|safe }}</h5>
+                                {{ post.body|safe|linebreaks }}
                             </div>
                         </div>
                     </a>
@@ -70,10 +67,10 @@
                         <div class="card bg-dark mb-1">
                             <div class="card-body">
                                 <h5 class="card-title">
-                                    {{ comment.post.title | safe }}
+                                    {{ comment.post.title|safe }}
                                     <span class="h6"> by {{ comment.post.writer }}</span>
                                 </h5>
-                                <p class="card-text">{{ comment.body | safe | linebreaks }}</p>
+                                <p class="card-text">{{ comment.body|safe|linebreaks }}</p>
                             </div>
                         </div>
                     </a>
@@ -106,14 +103,10 @@
                 Are you sure you want to delete your account?
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-primary text-uppercase" data-bs-dismiss="modal">Cancel</button>
-                <button type="button" class="btn btn-danger text-uppercase" data-bs-dismiss="modal"
-                    id="confirmDelete">Delete</button>
+                <button type="button" class="btn btn-secondary text-uppercase" data-bs-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-danger text-uppercase" id="confirmDelete">Delete</button>
             </div>
         </div>
     </div>
 </div>
-{% endblock %}
-{% block extras %}
-<script src="{% static 'js/profile.js' %}"></script>
 {% endblock %}
