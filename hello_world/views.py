@@ -1,4 +1,5 @@
 from django.shortcuts import render, get_object_or_404, redirect
+from django.http import HttpResponseRedirect
 from django.views import generic
 from django.contrib import messages
 from django.db.models import Q
@@ -12,7 +13,7 @@ class PostList(generic.ListView):
     paginate_by = 5
 
     def get_queryset(self):
-        queryset = BlogPost.objects.filter(status=1).order_by('-created_at')
+        queryset = BlogPost.objects.filter(status=1).order_by('-is_pinned', '-created_at')
         query = self.request.GET.get('search')
         if query:
             queryset = queryset.filter(
@@ -20,12 +21,14 @@ class PostList(generic.ListView):
                 Q(content__icontains=query) |
                 Q(writer__username__icontains=query)
             )
+        self.search_results = queryset.exists()  # Track if there are any results
         return queryset
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['form'] = BlogPostForm()
         context['search_term'] = self.request.GET.get('search', '')
+        context['no_results'] = not self.search_results and self.request.GET.get('search')
         return context
 
 def create_post(request):

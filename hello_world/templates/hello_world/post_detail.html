@@ -101,9 +101,9 @@
                 <div class="row mb-1">
                     <!-- Avatar -->
                     <div class="col-sm-2 col-lg-1 pt-md-3 text-center">
-                        <a href="{% url 'profile' post.writer.username %}" class="author text-white">
+                        <a href="{% url 'profile' comment.commenter.username %}" class="author text-white">
                             <!-- If user has no avatar, use placeholder -->
-                            {% if post.writer.profile.avatar.url != '/media/images/nobody.jpg' %}
+                            {% if comment.commenter.profile.avatar.url != '/media/images/nobody.jpg' %}
                             <img id="round" src="{{ comment.commenter.profile.avatar.url }}" alt="Avatar">
                             {% else %}
                             <img id="round" src="{% static 'images/nobody.jpg' %}" alt="Avatar">
@@ -113,7 +113,7 @@
                     <div class="col-sm-10 col-lg-11 px-3 px-lg-5">
                         <!-- Comment info (author, time of post) -->
                         <p class="text-fade small mb-0 spacing">
-                            <a href="{% url 'profile' post.writer.username %}" class="link-hover font-weight-bold h6 text-fade">
+                            <a href="{% url 'profile' comment.commenter.username %}" class="link-hover font-weight-bold h6 text-fade">
                                 {{ comment.commenter }} |
                             </a>
                             {{ comment.created_at }}

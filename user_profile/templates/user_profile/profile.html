@@ -3,7 +3,7 @@
 
 {% block content %}
 <div class="side-space">
-    <div class="container mt-5 margin-space card-body">
+    <div class="container mt-5 margin-space profile-wrapper">
         <div class="row text-center">
             <!-- Profile info -->
             <div class="col mt-4 text-dark">
@@ -33,12 +33,16 @@
                     <form id="edit-form" method="post" enctype="multipart/form-data">
                         {% csrf_token %}
                         <div class="form-group mb-3">
+                            <label for="id_avatar">Avatar</label>
+                            <input type="file" class="form-control" id="id_avatar" name="avatar">
+                        </div>
+                        <div class="form-group mb-3">
                             <label for="id_about">About Me</label>
                             <textarea class="form-control" id="id_about" name="about"
                                 rows="5">{{ profile.about }}</textarea>
                         </div>
                         <div class="pb-3">
-                            <button type="submit" class="btn btn-primary px-4 mx-auto">Save changes</button>
+                            <button type="submit" class="btn px-4 mx-auto">Save changes</button>
                             <button type="button" class="btn btn-secondary px-4 mx-auto">
                                 Cancel
                             </button>
@@ -50,8 +54,8 @@
         <div class="container mb-3 post-comment-container">
             <div class="row text-center">
                 <div class="col-lg-6 text-white mt-1">
-                    <h3 class="text-fade bg-dark p-2 mb-0">Your Posts</h3>
-                    <div class="p-3 mt-0 posts-wrapper">
+                    <h3 class="text-fade bg-dark p-2 mb-0 box-shadow text-uppercase">Your Posts</h3>
+                    <div class="mt-0 posts-wrapper">
                         {% for post in posts %}
                         <a href="{% url 'post_detail' post.slug %}" class="post-link">
                             <div class=" mb-1">
@@ -62,27 +66,27 @@
                             </div>
                         </a>
                         {% empty %}
-                        <p class="text-muted">No Posts...</p>
+                        <p class="pt-4 text-muted">No Posts...</p>
                         {% endfor %}
                     </div>
                 </div>
                 <div class="col-lg-6 text-white mt-1">
-                    <h3 class="text-fade bg-dark p-2 mb-0">Your Comments</h3>
-                    <div class="p-3 mt-0 posts-wrapper">
+                    <h3 class="text-fade bg-dark p-2 mb-0 box-shadow text-uppercase">Your Comments</h3>
+                    <div class="mt-0 posts-wrapper">
                         {% for comment in comments %}
-                        <a href="{% url 'post_detail' comment.post.slug %}" class="post-link">
-                            <div class="card bg-dark mb-1">
+                        <a href="{% url 'post_detail' comment.blog_post.slug %}" class="post-link">
+                            <div class="mb-1">
                                 <div class="card-body">
                                     <h5 class="card-title">
-                                        {{ comment.post.title|safe }}
-                                        <span class="h6"> by {{ comment.post.writer }}</span>
+                                        {{ comment.blog_post.heading | safe }}
+                                        <span class="h6"> by {{ comment.blog_post.writer }}</span>
                                     </h5>
-                                    <p class="card-text">{{ comment.body|safe|linebreaks }}</p>
+                                    <p class="card-text">You Commented: {{ comment.content | safe | linebreaks }}</p>
                                 </div>
                             </div>
                         </a>
                         {% empty %}
-                        <p class="text-muted">No Comments...</p>
+                        <p class="pt-4 text-muted">No Comments...</p>
                         {% endfor %}
                     </div>
                 </div>
@@ -114,7 +118,9 @@
                     aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                Are you sure you want to delete your account?
+                Sorry to see you leave. Are you sure you want to delete your account?
+                <hr>
+               <small class="text-danger">This change will be permanent.</small>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary text-uppercase" data-bs-dismiss="modal">Cancel</button>

@@ -56,80 +56,90 @@
         </div>
     </div>
 
-   <!-- Blog Entries Column -->
-<div class="col-12 mt-3 left">
-    <div class="row">
-        {% for post in object_list %}
-        <!-- Add the following line to display comment count -->
-        {% with post.comments.count as comment_count %}
-        <div class="col-12 mb-4">
-            <div class="card-body container">
-                <div class="row">
-                    <!-- Avatar -->
-                    <div class="col-3 col-md-3 col-lg-2 d-none d-sm-block">
-                        <a href="{% url 'profile' post.writer.username %}" class="author text-white my-0 py-0">
-                            <!-- If user has no avatar, use placeholder -->
-                            {% if post.writer.profile.avatar.url != '/media/nobody.jpg' %}
-                            <img id="round" src="{{ post.writer.profile.avatar.url }}" alt="Avatar" width="225"
-                                height="225">
-                            {% else %}
-                            <img id="round" src="{% static 'images/nobody.jpg' %}" alt="Avatar">
-                            {% endif %}
-                        </a>
-                    </div>
-                    <div class="col">
-                        <div class="row">
-                            <div class="col">
-                                <a href="{% url 'post_detail' post.slug %}" class="post-link">
-                                    <h2 class="card-title">{{ post.heading }}</h2>
-                                </a>
-                                <a href="{% url 'profile' post.writer.username %}" class="link-hover font-weight-bold h6 text-fade">
-                                    {{ post.writer }}
-                                </a>
+    <!-- Blog Entries Column -->
+    <div class="col-12 mt-3 left">
+        <div class="row">
+            {% if search_term %}
+            <h2>Search Results for "{{ search_term }}"</h2>
+            {% if not object_list %}
+            <p>No search results found. Please try again.</p>
+            {% endif %}
+            {% endif %}
+
+            {% for post in object_list %}
+            {% with post.comments.count as comment_count %}
+            <div class="col-12 mb-4">
+                <div class="card-body container {% if post.is_pinned %}pinned-post{% endif %}">
+                    <div class="row">
+                        <!-- Avatar -->
+                        <div class="col-3 col-md-3 col-lg-2 d-none d-sm-block">
+                            <a href="{% url 'profile' post.writer.username %}" class="author text-white my-0 py-0">
+                                {% if post.writer.profile.avatar.url != '/media/nobody.jpg' %}
+                                <img id="round" src="{{ post.writer.profile.avatar.url }}" alt="Avatar" width="225"
+                                    height="225">
+                                {% else %}
+                                <img id="round" src="{% static 'images/nobody.jpg' %}" alt="Avatar">
+                                {% endif %}
+                            </a>
+                        </div>
+                        <div class="col">
+                            <div class="row">
+                                <div class="col">
+                                    <a href="{% url 'post_detail' post.slug %}" class="post-link">
+                                        <h2 class="card-title {% if post.is_pinned %}pinned{% endif %}">
+                                            {% if post.is_pinned %}
+                                            <i class="fas fa-thumbtack pinned-icon"></i>
+                                            {% endif %}
+                                            {{ post.heading }}
+                                        </h2>
+                                    </a>
+                                    <a href="{% url 'profile' post.writer.username %}"
+                                        class="link-hover font-weight-bold h6 text-fade">
+                                        {{ post.writer }}
+                                    </a>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <hr class="hr-dark" />
-                <div class="row">
-                    <div class="col text-right">
-                        <p class="card-text muted h6">{{ post.created_at }}</p>
-                    </div>
-                    <!-- Display the comment count with an icon on the right side -->
-                    <div class="col-auto ml-auto">
-                        <p class="card-text muted h6">{{ comment_count }} <i class="far fa-comments"></i></p>
+                    <hr class="hr-dark" />
+                    <div class="row">
+                        <div class="col text-right">
+                            <p class="card-text muted h6">{{ post.created_at }}</p>
+                        </div>
+                        <div class="col-auto ml-auto">
+                            <p class="card-text muted h6">{{ comment_count }} <i class="far fa-comments"></i></p>
+                        </div>
                     </div>
                 </div>
             </div>
+            {% endwith %}
+            {% if forloop.counter|divisibleby:3 %}
         </div>
-        {% endwith %}
-        {% if forloop.counter|divisibleby:3 %}
+        <div class="row">
+            {% endif %}
+            {% endfor %}
+        </div>
     </div>
-    <div class="row">
-        {% endif %}
-        {% endfor %}
-    </div>
-</div>
 
-<!-- Pagination -->
-{% if is_paginated %}
-<nav aria-label="Page navigation">
-    <ul class="pagination justify-content-center">
-        {% if page_obj.has_previous %}
-        <li class="page-item">
-            <a href="?page={{ page_obj.previous_page_number }}" class="page-link btn-style"><i
-                    class="fa-solid fa-chevron-left"></i> PREV</a>
-        </li>
-        {% endif %}
-        {% if page_obj.has_next %}
-        <li class="page-item">
-            <a href="?page={{ page_obj.next_page_number }}" class="page-link btn-style">NEXT <i
-                    class="fa-solid fa-chevron-right"></i></a>
-        </li>
-        {% endif %}
-    </ul>
-</nav>
-{% endif %}
-<!-- index.html content ends here -->
+    <!-- Pagination -->
+    {% if is_paginated %}
+    <nav aria-label="Page navigation">
+        <ul class="pagination justify-content-center">
+            {% if page_obj.has_previous %}
+            <li class="page-item">
+                <a href="?page={{ page_obj.previous_page_number }}" class="page-link btn-style"><i
+                        class="fa-solid fa-chevron-left"></i> PREV</a>
+            </li>
+            {% endif %}
+            {% if page_obj.has_next %}
+            <li class="page-item">
+                <a href="?page={{ page_obj.next_page_number }}" class="page-link btn-style">NEXT <i
+                        class="fa-solid fa-chevron-right"></i></a>
+            </li>
+            {% endif %}
+        </ul>
+    </nav>
+    {% endif %}
+    <!-- index.html content ends here -->
 
-{% endblock %}
+    {% endblock %}

@@ -128,6 +128,10 @@ label {
     height: 100%;
 }
 
+.pinned-icon {
+    font-size: 25px;
+}
+
 /*--------------------------------------------Posts */
 
 .mx-3 {
@@ -303,7 +307,7 @@ hr {
 }
 
 .post-comment-container {
-    padding: 15px;
+    padding: 5px;
     margin-bottom: 20px;
     width: auto;
 }
@@ -319,13 +323,23 @@ hr {
 
 .posts-wrapper {
     border-radius: 0 0 4px 4px;
-    border: 4px solid #000;
+    box-shadow: 0 0 10px 6px rgba(0, 0, 0, 0.4);
+    border: 1px solid #000;
     max-height: 500px;
+    height: 500px;
     overflow-y: auto;
+}
+
+.box-shadow {
+    box-shadow: 0 0 10px 6px rgba(0, 0, 0, 0.4);
 }
 
 .underline {
     text-decoration: underline;
+}
+
+.profile-wrapper {
+    border: 1px solid #000;
 }
 
 /*--------------------------------------------------------------Media Queries */
