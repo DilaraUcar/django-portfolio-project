@@ -1,5 +1,5 @@
-from . import views
 from django.urls import path, include
+from hello_world import views 
 
 urlpatterns = [
     # Post list (hello_world) view

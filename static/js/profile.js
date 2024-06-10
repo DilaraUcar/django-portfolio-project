@@ -14,11 +14,11 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     // Function to confirm deletion of account
-    document.getElementById('btn-delete').addEventListener('click', function() {
-        // Show the delete confirmation modal
-        var deleteModal = new bootstrap.Modal(document.getElementById('deleteAccountModal'));
-        deleteModal.show();
-    });
+    function confirmDelete() {
+        console.log("confirm delete called");
+        // Submit the hidden delete form
+        document.getElementById('delete-form').submit();
+    }
 
     // Ensure that the edit button is properly linked to the editAbout function
     document.getElementById('edit-btn').addEventListener('click', editAbout);
@@ -26,4 +26,20 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Ensure that the cancel button is properly linked to the cancelEdit function
     document.querySelector('#edit-about .btn-secondary').addEventListener('click', cancelEdit);
+
+    // Ensure that the delete button shows the delete confirmation modal
+    document.getElementById('btn-delete').addEventListener('click', function() {
+        // Show the delete confirmation modal
+        var deleteModal = new bootstrap.Modal(document.getElementById('deleteAccountModal'));
+        deleteModal.show();
+    });
+
+    // Ensure that the confirm delete button is properly linked to the confirmDelete function
+    document.getElementById('confirmDelete').addEventListener('click', confirmDelete);
+
+    // Ensure the cancel button in the modal hides the modal properly
+    document.querySelector('#deleteAccountModal .btn-secondary').addEventListener('click', function() {
+        var deleteModal = bootstrap.Modal.getInstance(document.getElementById('deleteAccountModal'));
+        deleteModal.hide();
+    });
 });

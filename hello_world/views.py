@@ -2,7 +2,7 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.views import generic
 from django.contrib import messages
 from django.db.models import Q
-from .models import BlogPost
+from .models import BlogPost, Comment
 from .forms import BlogPostForm, CommentForm
 from django.utils.text import slugify
 
@@ -44,8 +44,7 @@ def create_post(request):
     return render(request, 'index.html', {'form': form})
 
 def post_detail(request, slug):
-    queryset = BlogPost.objects.filter(status=1)
-    post = get_object_or_404(queryset, slug=slug)
+    post = get_object_or_404(BlogPost.objects.filter(status=1), slug=slug)
     comments = post.comments.all().order_by("created_at")
     comment_count = post.comments.count()
 
@@ -59,7 +58,7 @@ def post_detail(request, slug):
             messages.add_message(
                 request, messages.SUCCESS, 'Comment submitted successfully'
             )
-            comment_form = CommentForm()  # Reset form after successful submission
+            return HttpResponseRedirect(request.path)  # Redirect to the same URL after successful POST
     else:
         comment_form = CommentForm()  # Form for GET request
 
