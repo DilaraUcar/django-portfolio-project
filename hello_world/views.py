@@ -1,11 +1,13 @@
-from django.shortcuts import render, get_object_or_404, redirect
+from django.shortcuts import render, get_object_or_404, redirect, reverse
 from django.http import HttpResponseRedirect
+from django.contrib.auth.decorators import login_required
 from django.views import generic
 from django.contrib import messages
 from django.db.models import Q
 from .models import BlogPost, Comment
 from .forms import BlogPostForm, CommentForm
 from django.utils.text import slugify
+
 
 class PostList(generic.ListView):
     model = BlogPost
@@ -75,3 +77,31 @@ def post_detail(request, slug):
             "comment_form": comment_form,
         }
     )
+
+
+@login_required
+def post_delete(request, post_id):
+    post = get_object_or_404(BlogPost, id=post_id)
+
+    # Check if the user has permission to delete the post
+    if request.user == post.writer or request.user.is_staff:
+        post.delete()
+        messages.success(request, "Post deleted successfully.")
+    else:
+        messages.error(request, "You don't have permission to delete this post.")
+
+    return redirect('home')  # Redirect to the home page after deletion
+
+
+@login_required
+def comment_delete(request, comment_id):
+    comment = get_object_or_404(Comment, id=comment_id)
+
+    # Check if the user has permission to delete the comment
+    if request.user == comment.commenter or request.user.is_staff:
+        comment.delete()
+        messages.success(request, "Comment deleted successfully.")
+    else:
+        messages.error(request, "You don't have permission to delete this comment.")
+
+    return redirect(request.META.get('HTTP_REFERER', 'home'))
