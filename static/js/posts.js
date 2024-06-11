@@ -5,5 +5,5 @@ function openForm() {
 
 function closeForm() {
     console.log("Closing form...");
-    document.getElementById("posting-form");
+    document.getElementById("posting-form").style.display = "none";
 }

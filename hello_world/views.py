@@ -63,6 +63,7 @@ def post_detail(request, slug):
             messages.add_message(
                 request, messages.SUCCESS, 'Comment submitted successfully'
             )
+            print("Comment submitted successfully!")  # Print debugging output
             return HttpResponseRedirect(request.path)  # Redirect to the same URL after successful POST
     else:
         comment_form = CommentForm()  # Form for GET request
@@ -79,18 +80,79 @@ def post_detail(request, slug):
     )
 
 
-@login_required
-def post_delete(request, post_id):
-    post = get_object_or_404(BlogPost, id=post_id)
+def comment_edit(request, slug, comment_id):
+    """
+    Display an individual comment for edit.
+
+    **Context**
+
+    ``post``
+        An instance of :model:`blog.Post`.
+    ``comment``
+        A single comment related to the post.
+    ``comment_form``
+        An instance of :form:`blog.CommentForm`
+    """
+    if request.method == "POST":
+
+        queryset = BlogPost.objects.filter(status=1)
+        post = get_object_or_404(queryset, slug=slug)
+        comment = get_object_or_404(Comment, pk=comment_id)
+        comment_form = CommentForm(data=request.POST, instance=comment)
+
+        if comment_form.is_valid() and comment.commenter == request.user:
+            comment = comment_form.save(commit=False)
+            comment.post = post
+            comment.approved = False
+            comment.save()
+            messages.add_message(request, messages.SUCCESS, 'Comment Updated!')
+            print("successmessage: Comment deleted successfully!")
+        else:
+            messages.add_message(request, messages.ERROR,
+                                 'Error updating comment!')
+
+    return HttpResponseRedirect(reverse('post_detail', args=[slug]))
+
+
+#@login_required
+#def comment_delete(request, slug, comment_id):
+    """
+    Delete an individual comment.
+
+    **Context**
+
+    ``post``
+        An instance of :model:`blog.Post`.
+    ``comment``
+        A single comment related to the post.
+    """
+    #queryset = BlogPost.objects.filter(status=1)
+    #Blogpost = get_object_or_404(queryset, slug=slug)
+    #comment = get_object_or_404(Comment, pk=comment_id)
+
+    #if comment.commenter == request.user:
+        #comment.delete()
+        #messages.add_message(request, messages.SUCCESS, 'Comment deleted successfully!')
+        #print("Comment deleted successfully!")  # Print debugging output
+    #else:
+        #messages.add_message(request, messages.ERROR, 'You can only delete your own comments!')
+        #print("Failed to delete comment: You can only delete your own comments!")  # Print debugging output
+
+    #return HttpResponseRedirect(reverse('post_detail', args=[slug]))
+
+
+#@login_required
+#def post_delete(request, post_id):
+    #post = get_object_or_404(BlogPost, id=post_id)
 
     # Check if the user has permission to delete the post
-    if request.user == post.writer or request.user.is_staff:
-        post.delete()
-        messages.success(request, "Post deleted successfully.")
-    else:
-        messages.error(request, "You don't have permission to delete this post.")
-
-    return redirect('home')  # Redirect to the home page after deletion
+    #if request.user == post.writer or request.user.is_staff:
+        #post.delete()
+        #messages.success(request, "Post deleted successfully.")
+    #else:
+        #messages.error(request, "You don't have permission to delete this post.")
+ 
+    #return redirect('home')  # Redirect to the home page after deletion
 
 
 @login_required
