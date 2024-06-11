@@ -74,7 +74,7 @@
                         <!-- Avatar -->
                         <div class="col-3 col-md-3 col-lg-2 d-none d-sm-block">
                             <a href="{% url 'profile' post.writer.username %}" class="author text-white my-0 py-0">
-                                {% if post.writer.profile.avatar.url != '/media/nobody.jpg' %}
+                                {% if post.writer.profile.avatar.url != 'images/nobody.jpg' %}
                                 <img id="round" src="{{ post.writer.profile.avatar.url }}" alt="Avatar" width="225"
                                     height="225">
                                 {% else %}
