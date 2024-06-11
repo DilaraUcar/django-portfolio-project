@@ -13,8 +13,18 @@
                     </h2>
                     <!-- If user has no avatar, use placeholder -->
                     <img class="about-round"
-                        src="{% if profile.avatar and profile.avatar.url %}{{ profile.avatar.url }}{% else %}{% static 'images/nobody.jpg' %}{% endif %}"
+                        src="{% if 'nobody' in profile.avatar and profile.avatar.url %}
+                        {{ profile.avatar.url }}
+                        {% else %}
+                        {% static 'images/nobody.jpg' %}
+                        {% endif %}"
                         alt="{{ profile.user }}'s avatar." width="225" height="225">
+
+                        <!--{% if "nobody" in post.writer.profile.avatar.url %}
+                            <img id="round" src="{% static 'images/nobody.jpg' %}" alt="Avatar">
+                            {% else %}
+                            <img id="round" src="{{ post.writer.profile.avatar.url }}" alt="Avatar">
+                            {% endif %}-->
                 </div>
                 <!-- "About me" section -->
                 <div id="about">

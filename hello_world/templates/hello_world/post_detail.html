@@ -13,10 +13,15 @@
                     <div class="col-sm-2 col-lg-1 pt-md-3 text-center">
                         <a href="{% url 'profile' post.writer.username %}" class="author text-white">
                             <!-- If user has no avatar, use placeholder -->
-                            {% if post.writer.profile.avatar.url != 'images/nobody.jpg' %}
+                            <!--{% if post.writer.profile.avatar.url != 'images/nobody.jpg' %}
                             <img id="round" src="{{ post.writer.profile.avatar.url }}" alt="Avatar">
                             {% else %}
                             <img id="round" src="{% static 'images/nobody.jpg' %}" alt="Avatar">
+                            {% endif %}-->
+                            {% if "nobody" in post.writer.profile.avatar.url %}
+                            <img id="round" src="{% static 'images/nobody.jpg' %}" alt="Avatar">
+                            {% else %}
+                            <img id="round" src="{{ post.writer.profile.avatar.url }}" alt="Avatar">
                             {% endif %}
                         </a>
                     </div>
@@ -50,7 +55,8 @@
                                         </div>
                                     </div>
                                     {% if user.is_authenticated and post.writer == user %}
-                                    <form method="post" action="{% url 'delete_post' post.id %}" class="pt-2 delete-form">
+                                    <form method="post" action="{% url 'delete_post' post.id %}"
+                                        class="pt-2 delete-form">
                                         {% csrf_token %}
                                         <button type="button" class="btn btn-danger btn-sm"
                                             onclick="openDeleteModal()">Delete</button>
@@ -112,10 +118,15 @@
                     <div class="col-sm-2 col-lg-1 pt-md-3 text-center">
                         <a href="{% url 'profile' comment.commenter.username %}" class="author text-white">
                             <!-- If user has no avatar, use placeholder -->
-                            {% if comment.commenter.profile.avatar.url != 'images/nobody.jpg' %}
+                            <!--{% if comment.commenter.profile.avatar.url != 'images/nobody.jpg' %}
                             <img id="round" src="{{ comment.commenter.profile.avatar.url }}" alt="Avatar">
                             {% else %}
                             <img id="round" src="{% static 'images/nobody.jpg' %}" alt="Avatar">
+                            {% endif %}-->
+                            {% if "nobody" in comment.commenter.profile.avatar.url %}
+                            <img id="round" src="{% static 'images/nobody.jpg' %}" alt="Avatar">
+                            {% else %}
+                            <img id="round" src="{{ comment.commenter.profile.avatar.url }}" alt="Avatar">
                             {% endif %}
                         </a>
                     </div>
@@ -167,7 +178,7 @@
             <div class="modal-body">
                 Are you sure you want to delete this?
                 <hr>
-               <small class="text-danger">This change will be permanent.</small>
+                <small class="text-danger">This change will be permanent.</small>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary text-uppercase" data-dismiss="modal">Cancel</button>
