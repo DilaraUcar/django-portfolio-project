@@ -80,6 +80,10 @@ label {
     color: #000b7e;
 }
 
+.errorlist {
+    color: red;
+}
+
 /*----------------------------Django messages */
 .dismiss-card {
     box-shadow: 0 0 10px 6px rgba(0, 0, 0, 0.4);
