@@ -14,9 +14,9 @@
                     <!-- If user has no avatar, use placeholder -->
                     <img class="about-round"
                         src="{% if 'nobody' in profile.avatar and profile.avatar.url %}
-                        {{ profile.avatar.url }}
-                        {% else %}
                         {% static 'images/nobody.jpg' %}
+                        {% else %}
+                        {{ profile.avatar.url }}
                         {% endif %}"
                         alt="{{ profile.user }}'s avatar." width="225" height="225">
 
