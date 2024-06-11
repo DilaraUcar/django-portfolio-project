@@ -1,42 +1,56 @@
 /*--------------------------------------------General Styles */
 .dark-backgr {
-    background-color: #2E7B7F;
+    background-color: rgba(0, 0, 0, 1);
 }
 
 p {
     color: #000;
 }
 
-a {
+#socials > a {
     color: #fff;
+}
+
+a {
     text-decoration: none;
 }
 
 .btn {
-    border-radius: 10px;
+    border-radius: 5px;
     color: #fff;
-    background-color: rgba(46, 123, 127, 0.9);
+    background-color: #000;
     padding: 10px;
-    width: 100px;
     text-align: center;
-    box-shadow: 0 0 4px 2px rgba(26, 46, 47, 0.5);
+    box-shadow: 0 0 10px 6px rgba(0, 0, 0, 0.4);
     border: none;
+    border-bottom: 3px solid gray;
+    border-right: 3px solid gray;
+    transition: box-shadow 0.3s ease;
 }
 
-.btn:hover {
-    background-color: rgba(68, 174, 180, 0.9);
+.btn:hover,
+.btn:active,
+.btn:focus {
+    background-color: rgba(0, 0, 0, 0.85);
+    color: #fff;}
+
+.btn-:active {
+    box-shadow: none; 
+    border-bottom: none;
+    border-right: none;
+    border-top: 3px solid gray;
+    border-left: 3px solid gray;
+    transform: translateY(5px);
 }
 
 .card-body {
-    box-shadow: 0 0 7px 4px rgba(40, 106, 109, 0.7);
-    border-radius: 35px 35px 35px 0;
+    box-shadow: 0 0 10px 6px rgba(0, 0, 0, 0.4);
+    border-radius: 15px 15px 15px 0;
     width: auto;
 }
 
 input {
-    border-radius: 10px;
     box-shadow: 0 0 4px 2px rgba(26, 46, 47, 0.5);
-    border: 0.5px solid;
 }
 
 label {
@@ -51,16 +65,76 @@ label {
     padding: 20px;
 }
 
+#id_content {
+    display: block;
+}
+
+.custom-card-body {
+    box-shadow: 0 0 10px 6px rgba(0, 0, 0, 0.4);
+    border-radius: 35px 35px 0px 35px;
+    width: fit-content;
+    margin: 0 auto;
+}
+
+.link-hover  {
+    color: #000b7e;
+}
+
+.errorlist {
+    color: red;
+}
+
+/*----------------------------Django messages */
+.dismiss-card {
+    box-shadow: 0 0 10px 6px rgba(0, 0, 0, 0.4);
+    border-radius: 35px 35px 0px 35px;
+    margin: 0 auto;
+    text-align: center;
+    width: inherit;
+}
+
+.alert-dismissible {
+    padding-right: 0;
+}
+
+
 /*--------------------------------------------Navigation */
 .container-fluid {
     padding-left: 30px;
 }
 
 .logo-img {
-    max-height: 60px;
+    max-height: 50px;
+    max-width: 295px;
+}
+
+.nav-item {
+    letter-spacing: 2px;
 }
 
 /*----------------------------------------------------------Home Page */
+#search-button {
+    position: absolute !important;
+    background: #000;
+    color: #fff;
+    cursor: pointer;
+}
+
+.search-input {
+    padding-left: 5px;
+}
+
+.post-form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
+.pinned-icon {
+    font-size: 25px;
+}
 
 /*--------------------------------------------Posts */
 
@@ -90,19 +164,37 @@ label {
 }
 
 .post-link:hover {
-    color: #2E7B7F;
+    color: #6e6e6e;
 }
 
 .btn-style {
-    border-radius: 10px;
+    border-radius: 5px;
     color: #fff;
-    background-color: rgba(46, 123, 127, 0.9);
+    background-color: #000;
     padding: 10px;
-    width: 100px;
     text-align: center;
-    box-shadow: 0 0 4px 2px rgba(26, 46, 47, 0.5);
     border: none;
+    box-shadow: 0 0 10px 6px rgba(0, 0, 0, 0.4);
+    border-bottom: 3px solid gray;
+    border-right: 3px solid gray;
+    transition: box-shadow 0.3s ease;
     margin-bottom: 10px;
+}
+
+.btn-style:active {
+    box-shadow: none; 
+    border-bottom: none;
+    border-right: none;
+    border-top: 3px solid gray;
+    border-left: 3px solid gray;
+    transform: translateY(5px);
+}
+
+.btn-style:hover,
+.btn-style:active,
+.btn-style:focus {
+    background-color: rgba(0, 0, 0, 0.85);
+    color: #fff;
 }
 
 .no-underline {
@@ -111,9 +203,9 @@ label {
 
 #round {
     border-radius: 50%; 
-    box-shadow: 0 0 5px 3px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 0 10px 6px rgba(0, 0, 0, 0.35);
     width: 100px; 
-    height: auto;
+    height: 100px;
 }
 
 .space {
@@ -126,6 +218,60 @@ label {
 
 #contain {
     padding: 10px;
+}
+
+.btn-close {
+    border-radius: 5px;
+    background-color: #fff;
+    padding: 5px;
+    padding-top: 10px;
+    text-align: center;
+    box-shadow: 0 0 4px 2px rgba(50, 50, 50, 0.9);
+    border: 1px solid #234345;
+}
+
+#center-text {
+    padding: 10px 30px;
+}
+
+#bottom-space {
+    padding-bottom: 15px;
+}
+
+/* Comment section */
+.spacing {
+    padding: 20px 0;
+}
+
+.custom-comment-body {
+    box-shadow: 0 0 10px 6px rgba(0, 0, 0, 0.4);
+    border-radius: 35px 35px 0px 35px;
+    margin: 0 auto;
+}
+
+#commentForm {
+    width: fit-content;
+}
+
+.custom-form-body {
+    box-shadow: 0 0 10px 6px rgba(0, 0, 0, 0.4);
+    border-radius: 35px 35px 0px 35px;
+    max-width: 500px;
+    margin: 0 auto;
+    padding-bottom: 30px;
+    display: block;
+}
+
+textarea {
+    width: 260px;
+}
+
+.space-top {
+    padding-top: 15px;
+}
+
+.center {
+    display: inline-block;
 }
 
 /*--------------------------------------------Footer */
@@ -150,20 +296,74 @@ hr {
 
 .about-round {
     border-radius: 50%; 
-    box-shadow: 0 0 5px 3px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 0 5px 5px rgba(0, 0, 0, 0.5);
 }
 
 /*--------------------------------------------------------------Signup Page */
-
-.link-color {
-    color: #2E7B7F;
-}
 
 .link-color:hover {
     color: #000b7e;
 }
 
-/*--------------------------------------------------------------Signup Page */
-.custom-card-body {
-    width: max-content;
+/*--------------------------------------------------------------Profile Page */
+#about {
+    padding: 15px;
 }
+
+.post-comment-container {
+    padding: 5px;
+    margin-bottom: 20px;
+    width: auto;
+}
+
+#edit-about textarea {
+    width: 100%;
+    padding: 10px;
+}
+
+#edit-about label {
+    display: none;
+}
+
+.posts-wrapper {
+    border-radius: 0 0 4px 4px;
+    box-shadow: 0 0 10px 6px rgba(0, 0, 0, 0.4);
+    border: 1px solid #000;
+    max-height: 500px;
+    height: 500px;
+    overflow-y: auto;
+}
+
+.box-shadow {
+    box-shadow: 0 0 10px 6px rgba(0, 0, 0, 0.4);
+}
+
+.underline {
+    text-decoration: underline;
+}
+
+.profile-wrapper {
+    border: 1px solid #000;
+}
+
+/*--------------------------------------------------------------Media Queries */
+/* Larger width for custom form body on desktop */
+@media (min-width: 768px) {
+    .custom-form-body {
+        width: 70%; /* Adjust the width as needed */
+        margin: 0 auto; /* Center the element horizontally */
+    }
+}
+
+@media (max-width: 320px) {
+    .logo-img {
+        max-width: 210px;
+    }
+}
+
+/* Custom CSS to center text on mobile */
+@media (max-width: 576px) {
+    .text-center-mobile {
+      text-align: center !important;
+    }
+  }
