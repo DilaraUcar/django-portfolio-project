@@ -9,10 +9,9 @@
         <div class="container-fluid bg-shade">
             <div class="row mx-2 mt-1 justify-content-center justify-content-md-between">
                 <!-- Search -->
-                <div
-                    class="col-12 col-md d-flex align-items-center mt-2 flex-grow-0 justify-content-center justify-content-md-start">
-                    <form method="get" class="d-flex align-items-center w-100 justify-content-md-start">
-                        <div class="search-container justify-content-center">
+                <div class="col-12 col-md d-flex align-items-center mt-2 flex-grow-0">
+                    <form method="get" class="d-flex align-items-center w-100">
+                        <div class="search-container">
                             <input class="search-input" name="search" type="text" placeholder="Search..."
                                 value="{{ search_term }}">
                             <button type="submit" id="search-button">
@@ -22,7 +21,7 @@
                     </form>
                 </div>
                 <!-- Post a Thread -->
-                <div class="col-12 col-md-auto d-flex justify-content-center justify-content-md-end mt-2 flex-grow-0">
+                <div class="col-12 col-md-auto d-flex justify-content-center justify-content-lg-end mt-2 flex-grow-0">
                     <button id="posting-button" class="btn px-4 mx-auto mx-sm-3 mt-2" style="white-space: nowrap">
                         New Post
                     </button>
@@ -73,16 +72,10 @@
                         <!-- Avatar -->
                         <div class="col-3 col-md-3 col-lg-2 d-none d-sm-block">
                             <a href="{% url 'profile' post.writer.username %}" class="author text-white my-0 py-0">
-                                <!--{% if post.writer.profile.avatar.url != 'images/nobody.jpg' %}
-                                <img id="round" src="{{ post.writer.profile.avatar.url }}" alt="Avatar" width="225"
-                                    height="225">
-                                {% else %}
-                                <img id="round" src="{% static 'images/nobody.jpg' %}" alt="Avatar">
-                                {% endif %}-->
                                 {% if "nobody" in post.writer.profile.avatar.url %}
-                                <img id="round" src="{% static 'images/nobody.jpg' %}" alt="Avatar">
+                                <img class="round" src="{% static 'images/nobody.jpg' %}" alt="Avatar">
                                 {% else %}
-                                <img id="round" src="{{ post.writer.profile.avatar.url }}" alt="Avatar" width="225"
+                                <img class="round" src="{{ post.writer.profile.avatar.url }}" alt="Avatar" width="225"
                                     height="225">
                                 {% endif %}
                             </a>
@@ -144,7 +137,8 @@
             {% endif %}
         </ul>
     </nav>
-    {% endif %}
-    <!-- index.html content ends here -->
+</div>
+{% endif %}
+<!-- index.html content ends here -->
 
-    {% endblock %}
+{% endblock %}

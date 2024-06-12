@@ -11,7 +11,7 @@
                     <h2 class="text-uppercase">{{ profile.user.username }}{% if profile.user.is_staff %}
                         (Admin){% endif %}
                     </h2>
-                    <!-- If user has no avatar, use placeholder -->
+                    <!-- Use default if user has no avatar -->
                     <img class="about-round"
                         src="{% if 'nobody' in profile.avatar and profile.avatar.url %}
                         {% static 'images/nobody.jpg' %}
@@ -70,7 +70,7 @@
                             </div>
                         </a>
                         {% empty %}
-                        <p class="pt-4 text-muted">No Posts...</p>
+                        <p> class="pt-4 text-muted">No Posts...</p>
                         {% endfor %}
                     </div>
                 </div>
@@ -118,7 +118,7 @@
         <div class="modal-content bg-dark text-white">
             <div class="modal-header">
                 <h5 class="modal-title" id="deleteAccountModalLabel">Delete Account</h5>
-                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
+                <button type="button" class="btn-close btn-close-white clear-bd" data-bs-dismiss="modal"
                     aria-label="Close"></button>
             </div>
             <div class="modal-body">
@@ -127,7 +127,7 @@
                <small class="text-danger">This change will be permanent.</small>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary text-uppercase" data-bs-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-secondary clear-bd text-uppercase" data-bs-dismiss="modal">Cancel</button>
                 <button type="button" class="btn btn-danger text-uppercase" id="confirmDelete">Delete</button>
             </div>
         </div>

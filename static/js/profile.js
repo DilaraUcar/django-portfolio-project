@@ -1,4 +1,5 @@
 document.addEventListener('DOMContentLoaded', function() {
+    console.log("I'm attached")
     // Function to toggle between showing/hiding the edit form
     function editAbout() {
         console.log("edit about called");
@@ -42,4 +43,17 @@ document.addEventListener('DOMContentLoaded', function() {
         var deleteModal = bootstrap.Modal.getInstance(document.getElementById('deleteAccountModal'));
         deleteModal.hide();
     });
+
+    const closeButtons = document.querySelectorAll(".clear-bd")
+
+    closeButtons.forEach((button) => {
+        button.addEventListener('click', () => {
+            let backdrops = document.querySelectorAll('div.modal-backdrop')
+            setTimeout(() => {
+                backdrops.forEach((backdrop) => {
+                    backdrop.remove()
+                })
+            }, 1000)
+        })
+    })
 });

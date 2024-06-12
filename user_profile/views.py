@@ -5,6 +5,8 @@ from .forms import ProfileForm
 from django.contrib import messages
 from django.shortcuts import redirect
 from hello_world.models import BlogPost, Comment
+from django.urls import reverse
+
 
 # Create your views here.
 def profile(request, username):
@@ -13,6 +15,9 @@ def profile(request, username):
     """
     profile = get_object_or_404(Profile, user__username=username)
     user = profile.user  # Define the user variable from the profile
+
+    # Generate profile URL dynamically
+    profile_url = reverse('profile', args=[username])
 
     posts = BlogPost.objects.filter(writer=user).order_by("created_at")
     comments = Comment.objects.filter(commenter=user).order_by("created_at")
@@ -33,6 +38,7 @@ def profile(request, username):
         "profile_form": profile_form,
         "posts": posts,
         "comments": comments,
+        "profile_url": profile_url,  # Pass profile_url to the context
     }
 
     return render(request, "user_profile/profile.html", context)

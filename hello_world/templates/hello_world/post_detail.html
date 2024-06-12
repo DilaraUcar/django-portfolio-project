@@ -12,16 +12,10 @@
                     <!-- Avatar -->
                     <div class="col-sm-2 col-lg-1 pt-md-3 text-center">
                         <a href="{% url 'profile' post.writer.username %}" class="author text-white">
-                            <!-- If user has no avatar, use placeholder -->
-                            <!--{% if post.writer.profile.avatar.url != 'images/nobody.jpg' %}
-                            <img id="round" src="{{ post.writer.profile.avatar.url }}" alt="Avatar">
-                            {% else %}
-                            <img id="round" src="{% static 'images/nobody.jpg' %}" alt="Avatar">
-                            {% endif %}-->
                             {% if "nobody" in post.writer.profile.avatar.url %}
-                            <img id="round" src="{% static 'images/nobody.jpg' %}" alt="Avatar">
+                            <img class="round" src="{% static 'images/nobody.jpg' %}" alt="Avatar">
                             {% else %}
-                            <img id="round" src="{{ post.writer.profile.avatar.url }}" alt="Avatar">
+                            <img class="round" src="{{ post.writer.profile.avatar.url }}" alt="Avatar">
                             {% endif %}
                         </a>
                     </div>
@@ -109,16 +103,10 @@
                     <!-- Avatar -->
                     <div class="col-sm-2 col-lg-1 pt-md-3 text-center">
                         <a href="{% url 'profile' comment.commenter.username %}" class="author text-white">
-                            <!-- If user has no avatar, use placeholder -->
-                            <!--{% if comment.commenter.profile.avatar.url != 'images/nobody.jpg' %}
-                            <img id="round" src="{{ comment.commenter.profile.avatar.url }}" alt="Avatar">
-                            {% else %}
-                            <img id="round" src="{% static 'images/nobody.jpg' %}" alt="Avatar">
-                            {% endif %}-->
                             {% if "nobody" in comment.commenter.profile.avatar.url %}
-                            <img id="round" src="{% static 'images/nobody.jpg' %}" alt="Avatar">
+                            <img class="round" src="{% static 'images/nobody.jpg' %}" alt="Avatar">
                             {% else %}
-                            <img id="round" src="{{ comment.commenter.profile.avatar.url }}" alt="Avatar">
+                            <img class="round" src="{{ comment.commenter.profile.avatar.url }}" alt="Avatar">
                             {% endif %}
                         </a>
                     </div>
@@ -137,21 +125,39 @@
                             <hr class="hr-dark">
                             <div class="mb-1">
                                 {% if comment.created != comment.updated_at %}
-                                <p><small class="text-fade text-muted">Updated on {{ comment.updated_at }}</small>
-                                </p>
+                                <p><small class="text-fade text-muted">Updated on {{ comment.updated_at }}</small></p>
                                 {% endif %}
-                                <!--{% if user.is_authenticated and comment.commenter == user %}
-                                <button class="btn btn-delete" data-comment_id="{{ comment.id }}">Delete</button>
-                                <button class="btn btn-edit" data-comment_id="{{ comment.id }}">Edit</button>
-                                {% endif %}-->
                                 {% if user.is_authenticated and comment.commenter == user %}
-                                <form method="post" action="{% url 'delete_comment' comment.id %}" class="delete-form">
-                                    {% csrf_token %}
-                                    <button type="button" class="btn btn-danger btn-sm" onclick="openDeleteModal()"
-                                        id="delete-comment-btn-{{ comment.id }}">Delete</button>
-                                </form>
+                                <div class="comment-buttons">
+                                    <form method="post" action="{% url 'delete_comment' comment.id %}"
+                                        class="delete-form">
+                                        {% csrf_token %}
+                                        <div class="comment-btn-padding">
+                                            <button type="button" class=" btn-sm mr-3 text-uppercase btn-sm-comments"
+                                                onclick="openDeleteModal()"
+                                                id="delete-comment-btn-{{ comment.id }}">Delete</button>
+                                        </div>
+                                    </form>
+                                    <div>
+                                        <button type="button" class="btn-sm d-inline edit-btn text-uppercase btn-sm-comments"
+                                            onclick="openEditForm('{{ comment.id }}')">Edit</button>
+                                    </div>
+                                </div>
                                 {% endif %}
                             </div>
+                        </div>
+                        <!-- Edit Comment Form -->
+                        <div class="edit-comment-form" id="edit-comment-form-{{ comment.id }}" style="display: none;">
+                            <form method="post" action="{% url 'comment_edit' slug=post.slug comment_id=comment.id %}">
+                                {% csrf_token %}
+                                {{ comment_form|crispy }}
+                                <div class="space-top">
+                                    <button type="submit"
+                                        class="btn btn-sm center-comment-btn">Update</button>
+                                    <button type="button" class="btn btn-sm center-comment-btn"
+                                        onclick="closeEditForm('{{ comment.id }}')">Cancel</button>
+                                </div>
+                            </form>
                         </div>
                     </div>
                 </div>
@@ -188,6 +194,15 @@
 <script src="{% static 'js/comment_delete.js' %}"></script>
 <!--<script src="{% static 'js/post_delete.js' %}"></script>-->
 <script src="{% static 'js/posts.js' %}"></script>
+<script>
+    function openEditForm(commentId) {
+        document.getElementById('edit-comment-form-' + commentId).style.display = 'block';
+    }
+
+    function closeEditForm(commentId) {
+        document.getElementById('edit-comment-form-' + commentId).style.display = 'none';
+    }
+</script>
 {% endblock %}
 
 {% endblock content %}

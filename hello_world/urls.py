@@ -8,8 +8,9 @@ urlpatterns = [
     path('<slug:slug>/', views.post_detail, name='post_detail'),
     # Include Django authentication URLs
     path('accounts/', include('django.contrib.auth.urls')),
-    path('<slug:slug>/edit_comment/<int:comment_id>',
-         views.comment_edit, name='comment_edit'),
+    # URL for comment edit
+    path('post/<slug:slug>/comment/<int:comment_id>/edit/', views.comment_edit, name='comment_edit'),
+    #path('<slug:slug>/edit_comment/<int:comment_id>', views.comment_edit, name='comment_edit'),
      # URL for comment delete
     #path('<slug:slug>/delete_comment/<int:comment_id>', views.comment_delete, name='comment_delete'),
      path('comment/<int:comment_id>/delete/', views.comment_delete, name='delete_comment'),
