@@ -13,7 +13,7 @@
                     </h2>
                     <!-- Use default if user has no avatar -->
                     <img class="about-round"
-                        src="{% if 'nobody' in profile.avatar and profile.avatar.url %}
+                        src="{% if 'nobody' in profile.avatar.url %}
                         {% static 'images/nobody.jpg' %}
                         {% else %}
                         {{ profile.avatar.url }}
@@ -70,7 +70,7 @@
                             </div>
                         </a>
                         {% empty %}
-                        <p> class="pt-4 text-muted">No Posts...</p>
+                        <p class="pt-4 text-muted">No Posts...</p>
                         {% endfor %}
                     </div>
                 </div>

@@ -1,10 +1,11 @@
 from django.db import models
 from django.contrib.auth.models import User
 
-# Create your models here.
 
-# Base model to be used in other models
 class PostBase(models.Model):
+    """
+    Abstract base model for common post fields.
+    """
     content = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
@@ -16,12 +17,17 @@ class PostBase(models.Model):
 
 STATUS = ((0, "Draft"), (1, "Published"))
 
+
 class BlogPost(PostBase):
+    """
+    Stores a single blog post entry related to :model:`auth.User`.
+    """
     heading = models.CharField(max_length=100, unique=True)
     slug = models.SlugField(max_length=100, unique=True)
     writer = models.ForeignKey(
         User, on_delete=models.CASCADE, related_name="authored_posts"
     )
+
     class Meta:
         ordering = ["-created_at"]
 
@@ -35,6 +41,10 @@ class BlogPost(PostBase):
 
 
 class Comment(PostBase):
+    """
+    Stores a single comment entry related to :model:`auth.User`
+    and :model:`hello_world.BlogPost`.
+    """
     commenter = models.ForeignKey(
         User, on_delete=models.CASCADE, related_name="commented_posts"
     )

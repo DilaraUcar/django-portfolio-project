@@ -3,11 +3,15 @@ from django.contrib import admin
 from django.contrib.auth.models import User
 from django.db.models.signals import post_save
 from django.dispatch import receiver
+
 from cloudinary.models import CloudinaryField
 
 
 # Create your models here.
 class Profile(models.Model):
+    """
+    Stores a single user profile entry related to :model:`auth.User`.
+    """
     user = models.OneToOneField(
         User, on_delete=models.CASCADE, related_name='profile')
     about = models.CharField(max_length=500, default="Add bio...")
@@ -18,6 +22,9 @@ class Profile(models.Model):
 
 
 class ProfileAdmin(admin.ModelAdmin):
+    """
+    Custom admin options for the Profile model.
+    """
     exclude = ("posts", "comments")
 
     def get_form(self, request, obj=None, **kwargs):
