@@ -125,7 +125,11 @@ Profile Wireframe:
 
 ### Accessibility
 ### Agile Methodology
-### Data Model
+### Database Schema
+The database schema shows the structure of the database, the type and their relationship. This schema was done using [Lucid Chart](https://www.lucidchart.com/).
+
+![Database Schema](docs/readme/db-schema.jpeg)
+
 
 ## Technologies Used
 ### Languages Used
