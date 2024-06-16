@@ -56,9 +56,73 @@ In a potential future iteration:
 
 ## Design
 ### Color Pallete
+I decided to keep the color pallete very clean and stick with black and white. The only 'color' to the page would be user avatar images.
+
 ### Typography
+For this site, I kept it simple with a clean sans-serif font across the whole site.
+
 ### Imagery
+The site uses no imagery of its own and instead leaves the whole image space for users profile pictures.
+
+
 ### Wireframes
+Before building the site, I made wireframes for all the main sites. When building the site i made some changes on the pages such as the layout on tablet screens to fit the design better.
+
+Home Wireframe:
+<details>
+<summary>Desktop</summary>
+
+![Wireframe](docs/readme/home-lg-wf.jpeg)
+</details>
+<details>
+<summary>Tablet</summary>
+
+![Wireframe](docs/readme/home-md-wf.jpeg)
+</details>
+<details>
+<summary>Phone</summary>
+
+![Wireframe](docs/readme/home-sm-wf.jpeg)
+</details>
+
+---
+Post Details Wireframe:
+<details>
+<summary>Desktop</summary>
+
+![Wireframe](docs/readme/post-lg-wf.jpeg)
+</details>
+<details>
+<summary>Tablet</summary>
+
+![Wireframe](docs/readme/post-md-wf.jpeg)
+</details>
+<details>
+<summary>Phone</summary>
+
+![Wireframe](docs/readme/post-sm-wf.jpeg)
+</details>
+
+---
+Profile Wireframe:
+<details>
+<summary>Desktop</summary>
+
+![Wireframe](docs/readme/profile-lg-wf.jpeg)
+</details>
+<details>
+<summary>Tablet</summary>
+
+![Wireframe](docs/readme/profile-md-wf.jpeg)
+</details>
+<details>
+<summary>Phone</summary>
+
+![Wireframe](docs/readme/profile-sm-wf.jpeg)
+</details>
+
+
+
 ### Accessibility
 ### Agile Methodology
 ### Data Model
