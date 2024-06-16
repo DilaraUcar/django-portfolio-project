@@ -43,6 +43,15 @@ def profile(request, username):
             profile_form.save()
             messages.success(request, "Profile updated successfully")
             return redirect("profile", username=username)
+        else:
+            # Form (avatar) is invalid, handle error message display
+            avatar_errors = profile_form.errors.get('avatar')
+            if avatar_errors:
+                messages.error(
+                    request,
+                    avatar_errors.as_text(),
+                    extra_tags='avatar-error'
+                    )
     else:
         profile_form = ProfileForm(instance=profile)
 
