@@ -78,9 +78,13 @@ def delete_account(request):
          deletion or renders the delete confirmation template for GET request.
     """
     if request.method == "POST":
-        request.user.delete()
-        messages.success(request, "Profile deleted successfully")
-        return redirect("home")
+        try:
+            request.user.delete()
+            messages.success(request, "Account deleted successfully")
+            return redirect("home")
+        except Exception as e:
+            messages.error(request, f"Failed to delete profile: {str(e)}")
+    if request.user.username:
+        return redirect('profile', username=request.user.username)
     else:
-        # Render the confirmation template
-        return render(request, "delete_confirm.html")
+        return redirect('home')
