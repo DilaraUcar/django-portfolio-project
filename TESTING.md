@@ -105,12 +105,16 @@ I used [Python Linter - Pep8CI](https://pep8ci.herokuapp.com/) to test python co
 
 I used Lighthouse in Chrome Developer Tools in incognito mode to test the performance, accessibility, best practices and SEO of the website.
 
-In the lighthouse scores I did not get the scores i wanted and when checking the lighthouse score reasons i saw that the biggest issue had to do with server response times coming from cloudinary. The issues can be seen in this picture:
+In the lighthouse scores I did not get the scores i wanted:
 
 ![Lighthouse issue description](docs/testing/lh-desc.jpeg)
 
 The biggest issue seemed to be coming from clousinary.
-The lower score is partly related to the use of http instead of https on the cloudinary images combined with the size of the images. Although they are small on the page, some of them are actually quite big so will impact on download times.
+The lower score is partly related to the use of http instead of https on the cloudinary images combined with the size of the images. I looked in Slack and found that other students had fixed this issue by adding this code to there settings:
+
+![Cloudinary code added to settings](docs/testing/cloudinary-settings.jpeg)
+
+Adding this fixed the issue and all my lighthouse scores was in the green.
 
 ##### Home
 ![Home](docs/testing/lh-home.jpeg)
