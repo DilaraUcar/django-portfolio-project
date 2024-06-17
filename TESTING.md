@@ -82,18 +82,18 @@ I used [Python Linter - Pep8CI](https://pep8ci.herokuapp.com/) to test python co
 
 I used Lighthouse in Chrome Developer Tools in incognito mode to test the performance, accessibility, best practices and SEO of the website.
 
+In the lighthouse scores I did not get the scores i wanted and when checking the lighthouse score reasons i saw that the biggest issue had to do with server response times coming from cloudinary. The issues can be seen in this picture:
+
+![Lighthouse issue description](docs/testing/lh-description.jpeg)
+
+Upon looking it up on google and talking to a tutor, we got to the conslusion that server response times is not something we have control over, if cloudinary takes a certain amount of time to serve the images, then there is not a lot that can be done.
+
 ##### Home
 ![Home](docs/testing/lh-home.jpeg)
 <br><br>
 
-##### Menu
-![Post Detail](docs/testing/lh-post-detail.jpeg)<br><br>
-
-##### Sing up
-![Sign Up](docs/testing/lh-signup.jpeg)<br><br>
-
-##### Login
-![Login](docs/testing/lh-login.jpeg)<br><br>
+##### Post Detail
+![Post Detail](docs/testing/lh-post.jpeg)<br><br>
 
 ##### Profile
 ![Profile](docs/testing/lh-profile.jpeg)<br><br>
@@ -136,6 +136,7 @@ Afterwards, formal test cases were developed and executed.
 At a later stage Automated testing was carried out using validators and all errors were fixed, it was checked that all user goals are met and after this, a test case table was created.
 
 ### Full Testing
+Comprehensive testing has been conducted to ensure that all website functionalities are working as intended, providing users with a reliable and enjoyable browsing experience.
 
 Full testing was performed on the following devices:
 
@@ -150,6 +151,35 @@ Each device tested the site using the following browsers:
 - Google Chrome
 - Safari
 - Firefox
+
+## BUG TRACKER
+During development, I came across multitude of bugs. With some debugging, and help from tutors and Slack community, I got to the root of each issue and corrected its behavior.
+
+### Solved Bugs
+
+- Avatar images would load incorrectly or not at all for new users. I fixed this by changing the code for user images with help from CI walkthrough project for the image logic. The logic was taken from Code Institutes [blog walkthrough](https://github.com/Code-Institute-Solutions/blog/blob/main/15_testing/blog/templates/blog/post_detail.html) project for image fields.
+<br>
+I made the changes in my code from this:
+![JSHint validator](docs/testing/bug-fixes/avatar-logic-before.jpeg)
+<br>
+To this, using the same logic from walkthrough: 
+![JSHint validator](docs/testing/bug-fixes/avatar-logic-after.jpeg)
+<br>
+After these changes where made for the index.html, post_detail.html and profile.html using similar logic all images where showing properly and the bug was fixed.
+
+- In profile page there was a bug with the Bootstrap deletion modal. When the modal was opened the cancel and close(x) button was not working properly and was leaving the backdrop divs from the modal still on the page after modal was closed. To help solve this issue i got helped from CI tutor support Sarah that added this code to the end of profile.js file:
+<br>
+![Profile bug fix code](docs/testing/bug-fixes/profile-js.jpeg)
+
+- The profile delete modal had another bug that was helped fixing from another CI tutor, Thomas, that added this line to the code above:
+<br>
+location.reload();
+<br>
+The issue was that after pressing the buttons the page would freeze even after the backdrop issue was fixed. And with the code reload the page reloads itself when either the close(x) or cancel button is clicked to solve the freezing issue.
+
+### Unfixed Bugs
+No unsolved bugs.
+
 
 
 [< Back to README](README.md)
