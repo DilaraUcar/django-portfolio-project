@@ -7,7 +7,37 @@ Welcome to QuestHub, a web application that enables you to share your knowledge,
 Visit live site: [QuestHub](https://django-portfolio-468596d338f0.herokuapp.com/)
 
 # Table of Contents
-
+* [Features](#Features)
+  * [Existing Features](#existing-features)
+    * [Home page](#home-page)
+    * [Post Detail page](#post-detail-page)
+    * [Register/Login Page](#registerlogin-page)
+    * [Profile Page](#profile-page)
+    * [About Page](#about-page)
+    * [Comments & Profile Page](#comments--profile-page)
+  * [Future Implementations](#future-implementations)
+* [User Experience (UX)](#user-experience-ux)
+  * [User Stories](#user-stories)
+  * [Agile Methodology](#agile-methodology)
+* [Design](#design)
+  * [Colour Pallete](#colour-pallete)
+  * [Imagery](#imagery)
+  * [Wireframes](#wireframes)
+  * [Database Schema](#database-schema)
+* [Technologies Used](#technologies-used)
+  * [Languages Used](#languages-used)
+  * [Frameworks, Libraries & Programms Used](#frameworks-libraries--programms-used)
+* [Deployment](#deployment)
+  * [Heroku](#heroku)
+  * [Cloudinary](#cloudinary)
+  * [GitHub](#github)
+  * [Local Development](#local-development)
+* [Testing & Bugs](#testing--bugs)
+* [Credits](#credits)
+  * [Code Used](#code-used)
+  * [Content](#content)
+  * [Media](#media)
+  * [Acknowledgments](#acknowledgments)
 
 ## Features
 
