@@ -186,23 +186,26 @@ During development, I came across multitude of bugs. With some debugging, and he
 ### Solved Bugs
 
 - Avatar images would load incorrectly or not at all for new users. I fixed this by changing the code for user images with help from CI walkthrough project for the image logic. The logic was taken from Code Institutes [blog walkthrough](https://github.com/Code-Institute-Solutions/blog/blob/main/15_testing/blog/templates/blog/post_detail.html) project for image fields.
-<br>
+
 I made the changes in my code from this:
+
 ![JSHint validator](docs/testing/bug-fixes/avatar-logic-before.jpeg)
-<br>
+
 To this, using the same logic from walkthrough: 
+
 ![JSHint validator](docs/testing/bug-fixes/avatar-logic-after.jpeg)
-<br>
+
 After these changes where made for the index.html, post_detail.html and profile.html using similar logic all images where showing properly and the bug was fixed.
 
 - In profile page there was a bug with the Bootstrap deletion modal. When the modal was opened the cancel and close(x) button was not working properly and was leaving the backdrop divs from the modal still on the page after modal was closed. To help solve this issue i got helped from CI tutor support Sarah that added this code to the end of profile.js file:
-<br>
+
 ![Profile bug fix code](docs/testing/bug-fixes/profile-js.jpeg)
 
 - The profile delete modal had another bug that was helped fixing from another CI tutor, Thomas, that added this line to the code above:
-<br>
+
+
 location.reload();
-<br>
+
 The issue was that after pressing the buttons the page would freeze even after the backdrop issue was fixed. And with the code reload the page reloads itself when either the close(x) or cancel button is clicked to solve the freezing issue.
 
 ### Unfixed Bugs
