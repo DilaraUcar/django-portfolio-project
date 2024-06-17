@@ -52,7 +52,44 @@ In a potential future iteration:
 ### Defensive Design Features
 
 ## User Experience
-### User stories
+### User Stories
+|                                       ||                                                                                   |
+| :-------------------------------------|--|:------------------------------------------------------------------------------------------- |
+|**USER REGISTRATION**             |  ||
+|                                       |  | As a user, I want to be able to register on the website|             
+|                                       |  | Then the user can log in.|
+|                                       |  | When the user is logged in they can comment on any post they want.|
+|**POST/OPEN THREADS**   |  || 
+|                                       |  | When a blog post title is clicked on a detailed view of the post is seen.|
+|                                       |  | Given a logged in user, they can create a post.|
+|                                       |  | Given a logged in user, they can read a post.|
+|**MANAGE COMMENTS**                            |  ||
+|                                       |  | Given a logged in user, they can comment on a post.|
+|                                       |  | Given a logged in user, they can read a comment|
+|                                       |  | Given a logged in user, they can update a comment they have made.|
+|                                       |  | Given a logged in user, they can delete a comment they have made.|
+|**USER PROFILES**                               |  ||
+|                                       || As a logged in user, I get an automatic profile page when new account is registered.|
+|                                       || As a site user, I can view the profile page for my account and others.|                                  
+|                                       || As a site user, I can see my posts, comments and profile picture on my profile page.|
+|**EDIT / DELETE PROFILE**                       |  ||
+|                                       || As a logged in user, I can upload a profile picture.|
+|                                       || As a logged in user, I can write a profile bio and update it.|
+|                                       || As a logged in user, I can delete my own profile.|
+|**POST PAGINATION**              |  ||
+|                                       || Given more than one post in the database, these multiple posts are listed.|
+|                                       || When a user opens the main page a list of posts is seen.|
+|                                       || Then the user sees all post titles with pagination to choose what to read.|
+---
+
+### Agile Methodology
+I used GitHub projects to manage this project's development stages using Agile methodology. You can see my iterations and project board to learn more.
+
+ I added all the user stories to the Issues page and connected them to the project board. I kept iterations short and somewhat flexible. Each user story has a list of acceptance criteria and associated tasks, each one with a checkbox for easy tracking of progress.
+
+ During the making of the project i decided some of the user stories was not as important to focus on during the scope of time to finsih the project and decited not to do them. I also created an excel sheet to more easily update and rewrite user stories. A user story i added that is not seen on the project board is the full CRUD functionality for comments. I also added a user stories for profiles so that i could easily keep track of what i wanted the functionalities to be.
+![User Stories](docs/readme/user-stories.jpeg)
+
 
 ## Design
 ### Color Pallete
@@ -124,7 +161,6 @@ Profile Wireframe:
 
 
 ### Accessibility
-### Agile Methodology
 ### Database Schema
 The database schema shows the structure of the database, the type and their relationship. This schema was done using [Lucid Chart](https://www.lucidchart.com/).
 
