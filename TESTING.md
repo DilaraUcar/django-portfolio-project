@@ -107,9 +107,10 @@ I used Lighthouse in Chrome Developer Tools in incognito mode to test the perfor
 
 In the lighthouse scores I did not get the scores i wanted and when checking the lighthouse score reasons i saw that the biggest issue had to do with server response times coming from cloudinary. The issues can be seen in this picture:
 
-![Lighthouse issue description](docs/testing/lh-description.jpeg)
+![Lighthouse issue description](docs/testing/lh-desc.jpeg)
 
-Upon looking it up on google and talking to a tutor, we got to the conslusion that server response times is not something we have control over, if cloudinary takes a certain amount of time to serve the images, then there is not a lot that can be done.
+The biggest issue seemed to be coming from clousinary.
+The lower score is partly related to the use of http instead of https on the cloudinary images combined with the size of the images. Although they are small on the page, some of them are actually quite big so will impact on download times.
 
 ##### Home
 ![Home](docs/testing/lh-home.jpeg)
