@@ -7,9 +7,32 @@ Welcome to QuestHub, a web application that enables you to share your knowledge,
 Visit live site: [QuestHub](https://django-portfolio-468596d338f0.herokuapp.com/)
 
 # Table of Contents
-* [Features](#Features)
-  * [Existing Features](#existing-features)
-    * [Home page](#home-page)
+* [User Story Testing](#user-story-testing)
+  * [USER REGISTRATION	](#user-registration)
+  * [POST/OPEN THREADS](#postopen-threads)
+  * [MANAGE COMMENTS](#manage-comments)
+  * [USER PROFILES](#user-profiles)
+  * [EDIT / DELETE PROFILE](#edit--delete-profile)
+  * [POST PAGINATION](#post-pagination)
+* [AUTOMATED TESTING](#automated-testing)
+  * [Python Linter](#python-linter)
+  * [Lighthouse](#lighthouse)
+    * [Home](#home)
+    * [Post Detail](#post-detail)
+    * [Profile](#profile)
+  * [Jigsaw CSS Validator](#jigsaw-css-validator)
+  * [W3 Html Validator](#w3-html-validator)
+  * [JSHint Validator](#jshint-validator)
+  * [Custom Automated Testing](#custom-automated-testing)
+* [Manual Testing](#manual-testing)
+  * [Full Testing](#full-testing)
+* [BUG TRACKER](#bug-tracker)
+  * [Solved Bugs](#solved-bugs)
+  * [Unfixed Bugs](#unfixed-bugs)
+
+
+
+
 
 [< Back to README](README.md)
 

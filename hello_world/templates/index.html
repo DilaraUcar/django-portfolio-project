@@ -14,7 +14,7 @@
                         <div class="search-container">
                             <input class="search-input" name="search" type="text" placeholder="Search..."
                                 value="{{ search_term }}">
-                            <button type="submit" id="search-button">
+                            <button aria-label="Search button" type="submit" id="search-button">
                                 <i class="fas fa-search"></i>
                             </button>
                         </div>
@@ -102,10 +102,10 @@
                     <hr class="hr-dark" />
                     <div class="row">
                         <div class="col text-right">
-                            <p class="card-text muted h6">{{ post.created_at }}</p>
+                            <p class="card-text text-muted h6">{{ post.created_at }}</p>
                         </div>
                         <div class="col-auto ml-auto">
-                            <p class="card-text muted h6">{{ comment_count }} <i class="far fa-comments"></i></p>
+                            <p class="card-text text-muted h6">{{ comment_count }} <i class="far fa-comments"></i></p>
                         </div>
                     </div>
                 </div>

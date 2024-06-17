@@ -162,10 +162,6 @@ label {
     --bs-gutter-x: 0rem;
 }
 
-.muted {
-    color: rgba(77, 77, 77, 0.5);
-}
-
 .post-link {
     text-decoration: none;
     color: #000;
