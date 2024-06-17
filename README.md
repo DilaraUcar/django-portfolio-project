@@ -143,7 +143,7 @@ The site uses no imagery of its own and instead leaves the whole image space for
 ### Wireframes
 Before building the site, I made wireframes for all the main sites. When building the site i made some changes on the pages such as the layout on tablet screens to fit the design better.
 
-Home Wireframe:
+**Home Wireframe:**
 <details>
 <summary>Desktop</summary>
 
@@ -161,7 +161,7 @@ Home Wireframe:
 </details>
 
 ---
-Post Details Wireframe:
+**Post Details Wireframe:**
 <details>
 <summary>Desktop</summary>
 
@@ -179,7 +179,7 @@ Post Details Wireframe:
 </details>
 
 ---
-Profile Wireframe:
+**Profile Wireframe:**
 <details>
 <summary>Desktop</summary>
 
@@ -241,7 +241,7 @@ Python, HTML, CSS, and JavaScript.
 ## Deployment
 - This site was deployed by completing the following steps:
 
-***Requirements and Procfile before Deployment***
+***Requirements and Procfile before Deployment:***
 
 In order to deploy the project, Heroku needs information about the technologies used. Before deployment, I createD a Procfile and a list of requirements. In some cases, you may also need a runtime.txt file specifying the version of Python to use.
 
@@ -298,13 +298,13 @@ Once your Heroku settings and GitHub repository are up to date, it's time to con
 
 ### GitHub
 ### Local Development
-***How to Fork Repository***
+***How to Fork Repository:***
 
 1. Log in to GitHub.
 2. Go to the repository for this project, [DilaraUcar/django-portfolio-project](https://github.com/DilaraUcar/django-portfolio-project).
 3. Click the Fork button in the top right corner.
 
-***How to Clone the Repository***
+***How to Clone the Repository:***
 
 1. Log in to GitHub.
 2. Go to the repository for this project, [DilaraUcar/django-portfolio-project](https://github.com/DilaraUcar/django-portfolio-project).
