@@ -1,4 +1,4 @@
-# Welcome to QuestHub!
+# WELCOME TO QUESTHUB!
 
 ![QuestHub mockup](docs/readme/questhub-mockup.jpeg)
 
@@ -329,6 +329,8 @@ Please refer to [TESTING.md](TESTING.md) file for all testing and bug handling c
 - Code Institutes tutors Sarah & Thomas helped me with some bootstrap and javascript code that was not working. More on specificities in my [TESTING.md](TESTING.md) file on the exact issue and code used.
 
 - [Code Institue](https://learn.codeinstitute.net/ci_program/diplomainsoftwaredevelopmentecomm) walkthought tutorials "Boutique Ado" for the search input code in base template.
+
+- For pinned posts in models i used code from [Stack overflow](https://stackoverflow.com/questions/66570706/how-to-pin-posts-in-django). This page explaines how to implement pinning posts and the changes that needs to be made to achieve this.
 
 ### Content
 
