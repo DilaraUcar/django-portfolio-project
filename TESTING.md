@@ -16,10 +16,10 @@ Visit live site: [QuestHub](https://django-portfolio-468596d338f0.herokuapp.com/
   * [POST PAGINATION](#post-pagination)
 * [AUTOMATED TESTING](#automated-testing)
   * [Python Linter](#python-linter)
-  * [Lighthouse](#lighthouse)
-    * [Home](#home)
-    * [Post Detail](#post-detail)
-    * [Profile](#profile)
+  * [Lighthouse Scores](#lighthouse-scores)
+    * [Home](#home-score)
+    * [Post Detail](#post-detail-score)
+    * [Profile](#profile-score)
   * [Jigsaw CSS Validator](#jigsaw-css-validator)
   * [W3 Html Validator](#w3-html-validator)
   * [JSHint Validator](#jshint-validator)
@@ -30,29 +30,26 @@ Visit live site: [QuestHub](https://django-portfolio-468596d338f0.herokuapp.com/
   * [Solved Bugs](#solved-bugs)
   * [Unfixed Bugs](#unfixed-bugs)
 
-
-
-
+<br>
 
 [< Back to README](README.md)
 
-## User Story Testing
+## USER STORY TESTING
 
 ### USER REGISTRATION	
 
 | Goals | How are they achieved? |
 | --- | --- |
-| As a user, I want to be able to register on the website | Any user that wants to register simply can go to signup tap and redister as long as an username, email and password is entered in correct formats as stated on the reg. page. |
+| As a user, I want to be able to register on the website | Any user that wants to register can simply go to signup page and register as long as a username, email and a password is entered in correct formats, as stated on the registation page. |
 | Then the user can log in.| The users are automatically logged in when account is registered and if they logout they can login again with no issues.
- | When the user is logged in they can comment on any post they want.| Yes when user is logged in they will be redirected to home page which will have the button for writing a post. And if they want to comment on any posts they can do so by opening any post and then will see the 'write a comment' button.|
+ | When the user is logged in they can comment on any post they want.| Yes when user is logged in they will be redirected to home page which will have the button for writing a post in the upper right corner. If they want to comment on any posts they can do so by opening any post and then they will see the 'write a comment' button which will open up a form.|
  | |
-
 
 ### POST/OPEN THREADS		
 
 | Goals | How are they achieved? |
 | --- | --- |
-| When a blog post title is clicked on a detailed view of the post is seen. | When a post is opened the user will be able to see the contents of the post and all its comments.|
+| When a blog post title is clicked a detailed view of the post is seen. | When a post is opened the user will be able to see the contents of the post and all its comments.|
 | Given a logged in user, they can create a post. | All logged in users can create posts by clicking the new post button on the home page. |
 | Given a logged in user, they can read a post.| Yes all logged in users can read all posts that are published. |
 
@@ -60,110 +57,118 @@ Visit live site: [QuestHub](https://django-portfolio-468596d338f0.herokuapp.com/
 
 | Goals | How are they achieved? |
 | --- | --- |
-| Given a logged in user, they can comment on a post.| All logged in users can comment on a post of there choice by opening the post they want to comment on and then pressing the 'write a comment' button.|
+| Given a logged in user, they can comment on a post.| All logged in users can comment on a post of their choice by opening the post they want to comment on and then pressing the 'write a comment' button that will open up a form for them to write a comment in.|
 | Given a logged in user, they can read a comment | Logged in users can read all comments by navigating to a post they want to read and seeing all comments that have been written underneath the post. |
-| Given a logged in user, they can update a comment they have made. | All users that are logged in with the account they have made a comment with to a post can edit and update the existing comment by pressing the edit button on there comment. |
-| Given a logged in user, they can delete a comment they have made. | All users that are logged in with the account they have made a comment with to a post can delete the existing comment by pressing the delete button on the comment that opens up an confirmation bootstrap modal to confirm deletion. |
+| Given a logged in user, they can update a comment they have made. | All users that are logged in with the account they have made a comment with to a post can edit and update the existing comment by pressing the edit button underneath their comment which will open up a form thats prefilled with the content of there comment. |
+| Given a logged in user, they can delete a comment they have made. | All users that are logged in can delete their account by going to 'My Profile' and then scroll down to the 'Delete Account' button. By clicking on this button a confirmation modal to confirm the deletion will open up.|
 
 ###  USER PROFILES		
 
 | Goals | How are they achieved? |
 | --- | --- |
-| As a logged in user, I get an automatic profile page when new account is registered. | By creating a account the user will automatically get there own profile, which they can access in the navigation menu by going to 'My Profile'. |
-| As a site user, I can view the profile page for my account and others. | Yes all profiles can be accessed, either by going to own profile by going to nav meny and clicking on 'My Profile' or by clicking on username or avatar if a post has been made, including other users by clicking usernames and avatars. |
-| As a site user, I can see my posts, comments and profile picture on my profile page. | On My Profile page all comments and posts, if any, will be displayed with clickable links to the posts they have made or the post where there comment has been written. If no comments or posts has been made by a user there will instead be a small texts that states that the user has no posts and/or no comments. |
+| As a logged in user, I get an automatic profile page when new account is registered. | By creating a account the user will automatically get their own profile, which they can access in the navigation menu by going to 'My Profile'. |
+| As a site user, I can view the profile page for my account and others. | All profiles can be accessed, either by going to own profile by going to nav menu and clicking on 'My Profile', or by clicking on username or avatar if a post has been made which will take them to their own profile or other peoples profile if they have pressed on another persons posts username or avatar that is not their own. |
+| As a site user, I can see my posts, comments and profile picture on my profile page. | On My Profile page all comments and posts, if any, will be displayed with clickable links to the posts they have made or the post where there comment has been written. By clicking on the posts or comments on my profile it will take the user to that specific post or comment. If no comments or posts has been made by a user there will instead be a small texts that states that the user has no posts and/or no comments. |
 
 ###  EDIT / DELETE PROFILE			
 
 | Goals | How are they achieved? |
 | --- | --- |
-| As a logged in user, I can upload a profile picture. | Logged in users can change there avatars by heading to there profile page thats present in the top nav menu. If they then press the 'Edit Profile' button on there profile page they will be able to change there profile picture. |
-| As a logged in user, I can write a profile bio and update it. | Logged in users can write a profile bio by heading to there profile page thats present in the top nav menu. If they then press the 'Edit Profile' button on there profile page a form will be opened in which they can write a bio in and then press the 'save changes' button. |
-| As a logged in user, I can delete my own profile. | In there profile page the user can delete there profile by pressing the delete button at the bottom of page, which that opens up an confirmation bootstrap modal to confirm deletion of there account. |
+| As a logged in user, I can upload a profile picture. | Logged in users can change their avatars by heading to their profile page thats present in the top nav menu. If they then press the 'Edit Profile' button on the profile page they will be able to change there profile picture. |
+| As a logged in user, I can write a profile bio and update it. | Logged in users can write a profile bio by heading to their profile page thats present in the top nav menu. If they then press the 'Edit Profile' button on there profile page a form will be opened in which they can write a bio in, and then pressing the 'save changes' button will update the profile to display their edited bio. |
+| As a logged in user, I can delete my own profile. | In there profile page the user can delete their profile by pressing the delete account button at the bottom of page, which then opens up an confirmation bootstrap modal to confirm the deletion of their account. |
 
 ###  POST PAGINATION				
 
 | Goals | How are they achieved? |
 | --- | --- |
 | Given more than one post in the database, these multiple posts are listed. | All posts are listed on the website. |
-| When a user opens the main page a list of posts is seen. | When user goes to main page of website the post are seen in a list format. |
-| Then the user sees all post titles with pagination to choose what to read. | All post titles are present so that the user may choose to read a post that interests them. If more than 5 posts are present in db pagination buttons will appear at the end of the five posts that indicates that there are more posts to be seen on second page. |
-
-
+| When a user opens the main page a list of posts is seen. | When user goes to main page of website the post are seen in a list format with the newest post appearing first after the pinned post. |
+| Then the user sees all post titles with pagination to choose what to read. | All post titles are present so that the user may choose to read a post that interests them. If more than 5 posts are present in database pagination buttons will appear at the end of the five posts that indicates that there are more posts to be seen on second page. And if the user presses the next button they will come to this second page and there will be displayed a 'prev' button to go back to main post page. |
 
 ---
 
 ## AUTOMATED TESTING
 
-### Python Linter
+### PYTHON LINTER
 
-I used [Python Linter - Pep8CI](https://pep8ci.herokuapp.com/) to test python code, all errors were fixed which were related to spacing or lines length or whitespace.
+I used [Python Linter - Pep8CI](https://pep8ci.herokuapp.com/) to test python code, all errors were fixed which were mostly related to spacing, code line length or whitespacing in code.
 
 ![Python Linter](docs/testing/python-linter.jpeg)
 
-### Lighthouse
+### LIGHTHOUSE SCORES
 
 I used Lighthouse in Chrome Developer Tools in incognito mode to test the performance, accessibility, best practices and SEO of the website.
 
-In the lighthouse scores I did not get the scores i wanted:
+In the lighthouse scores at first I did not get the scores i wanted which can be seen in this screenshot:
 
-![Lighthouse issue description](docs/testing/lh-desc.jpeg)
+![Lighthouse score issues description](docs/testing/lh-desc.jpeg)
 
 The biggest issue seemed to be coming from clousinary.
-The lower score is partly related to the use of http instead of https on the cloudinary images combined with the size of the images. I looked in Slack and found that other students had fixed this issue by adding this code to there settings:
+The lower score is partly related to the use of http instead of https on the cloudinary images combined with the size of the images. I looked in Slack and found that other students also have had these issues with cloudinary and they had fixed this issue by adding this code to their settings.py file:
 
 ![Cloudinary code added to settings](docs/testing/cloudinary-settings.jpeg)
 
-Adding this fixed the issue and all my lighthouse scores was in the green.
+Adding this fixed the issue and all my lighthouse scores was in the green now:
 
-##### Home
+##### HOME SCORE
+
 ![Home](docs/testing/lh-home.jpeg)
-<br><br>
 
-##### Post Detail
+##### POST DETAIL SCORE
+
 ![Post Detail](docs/testing/lh-post.jpeg)<br><br>
 
-##### Profile
+##### PROFILE SCORE
+
 ![Profile](docs/testing/lh-profile.jpeg)<br><br>
 
 ---
-### Jigsaw CSS Validator
 
-I used [Jigsaw CSS Validator](https://jigsaw.w3.org/css-validator/validator) to test styles.css and found no issues.
+### JIGSAW CSS VALIDATOR
+
+I used [Jigsaw CSS Validator](https://jigsaw.w3.org/css-validator/validator) to test styles.css and found no issues as seen in this screenshot:
 
 ![Jigsaw CSS Validator](docs/testing/css-validator.jpeg)
 
 ---
-### W3 Html Validator
 
-I used [W3 Html Validator](https://validator.w3.org/) to test all html pages and found no issues.
+### W3 HTML VALIDATOR
 
-![Jigsaw CSS Validator](docs/testing/html-validator.jpeg)
+I used [W3 Html Validator](https://validator.w3.org/) to test all html pages and found no issues as can be seen in this screenshot:
+
+![w3 html Validator](docs/testing/html-validator.jpeg)
 
 ---
-###  JSHint Validator
 
-I used [JSHint Validator](https://jshint.com/) to test all JS files and most issues where missing semicolons which where fixed until no issues found.
+###  JSHint VALIDATOR
+
+I used [JSHint Validator](https://jshint.com/) to test all JavaScript files and most issues where missing semicolons which where fixed until no issues found as can be seen in this screenshot:
 
 ![JSHint validator](docs/testing/jshint-validator.jpeg)
 
 ---
 
-### Custom Automated Testing
+### CUSTOM AUTOMATED TESTING
 
 In addition to the various validators, I created my own tests to test my python code.
-Using Django's testing features, I created 16 tests for the various views and forms used across the apps that make up the project. I then used these tests to iron out bugs and oversights. All tests now pass consistently.
+Using Django's testing features, I created 16 tests in total for the various views and forms used across the apps that make up the project. I then used these tests to iron out bugs and oversights. All tests now pass consistently.
 
-These tests work by setting up a testing environment and creating mock data to test the functions and features of the project. That lets me do rapid and repeated tests without manual input. And since it's done in a virtual testing environment that is destroyed after each test run, I don't have to clean out junk data from the actual database after testing which makes the testing very efficient and clean.
+These tests work by setting up a testing environment and creating mock data to test the functions and features of the project. This lets me do rapid and repeated tests without manual input. And since it's done in a virtual testing environment that is destroyed after each test is run, I don't have to clean out junk data from the database after testing which makes the testing very efficient and clean.
 
 
-## Manual Testing
+## MANUAL TESTING
+
 Manual testing was carried out as soon as the project started using exploratory testing techniques and a list of bugs was identified and placed in a document to tackle.
-At the same time as building the application, it was tested before moving to other steps and checking to make sure no major issues were found.
-Afterwards, formal test cases were developed and executed.
-At a later stage Automated testing was carried out using validators and all errors were fixed, it was checked that all user goals are met and after this, a test case table was created.
 
-### Full Testing
+At the same time as building the application, it was tested before moving to other steps and checking to make sure no major issues were found. What helped me with tackling the errors and code not working the use of console.log and print statements was extensively used for debugging purposes.
+
+Afterwards, formal test cases were developed and executed.
+
+At a later stage Automated testing was carried out using validators and all errors were fixed, it was checked that all user goals are met and after this, a test table was created.
+
+### FULL TESTING
+
 Comprehensive testing has been conducted to ensure that all website functionalities are working as intended, providing users with a reliable and enjoyable browsing experience.
 
 Full testing was performed on the following devices:
@@ -181,9 +186,10 @@ Each device tested the site using the following browsers:
 - Firefox
 
 ## BUG TRACKER
+
 During development, I came across multitude of bugs. With some debugging, and help from tutors and Slack community, I got to the root of each issue and corrected its behavior.
 
-### Solved Bugs
+### SOLVED BUGS
 
 **Issue: Incorrect or Missing Avatar Images for New Users**
 
@@ -292,7 +298,8 @@ When deleting a comment from a user with multiple comments resulted in the delet
 
 - To address the issue effectively, the solution involved adopting a more reliable approach from the Code Institute's blog [walkthrough project](https://github.com/Code-Institute-Solutions/blog). This approach provided a structured methodology to handle comment deletion based on comment IDs across multiple components of the application.
 
-### Unfixed Bugs
+### UN-FIXED BUGS
+
 No unsolved bugs.
 
 <br>
