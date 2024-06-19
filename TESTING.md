@@ -280,9 +280,21 @@ To address this issue, the following changes were made:
 ![Profile bug fix code](docs/testing/bug-fixes/profile-bug-after.jpeg)
 </details>
 
+---
+
+**Issue: Incorrect Deletion of Comments**
+
+***Problem Description:***
+
+When deleting a comment from a user with multiple comments resulted in the deletion of the wrong comment. Specifically, when attempting to delete a comment with a specific ID (e.g., ID 4), the comment with ID 1 was deleted instead. The specific problem was related to inconsistencies in how the application handled comment IDs during deletion operations. Although the exact origin of the issue was unclear, it was evident that the existing code did not accurately manage comment IDs during deletion.
+
+**Solution:**
+
+- To address the issue effectively, the solution involved adopting a more reliable approach from the Code Institute's blog [walkthrough project](https://github.com/Code-Institute-Solutions/blog). This approach provided a structured methodology to handle comment deletion based on comment IDs across multiple components of the application.
+
 ### Unfixed Bugs
 No unsolved bugs.
 
-
+<br>
 
 [< Back to README](README.md)
