@@ -24,11 +24,10 @@ class ProfileForm(forms.ModelForm):
         }
 
     def clean_avatar(self):
-        avatar = self.cleaned_data.get('avatar', False)  # Get avatar or False if not present
+        avatar = self.cleaned_data.get('avatar', False)
 
         # Check if avatar has changed from initial instance
         if avatar:
-            # If instance has avatar and submitted avatar is the same, skip validation
             if self.instance.avatar and self.instance.avatar == avatar:
                 return avatar
 
@@ -39,6 +38,7 @@ class ProfileForm(forms.ModelForm):
 
             valid_extensions = ['.jpg', '.jpeg', '.png', '.gif']
             if ext not in valid_extensions:
-                raise ValidationError("Unsupported file extension. Only .jpg, .jpeg, .png, .gif allowed.")
+                raise ValidationError(
+                    "Unsupported file. Only .jpg, .jpeg, .png, .gif allowed.")
 
         return avatar

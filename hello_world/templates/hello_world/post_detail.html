@@ -119,8 +119,6 @@
                             </a>
                             {{ comment.created_at }}
                         </p>
-                        <!-- Print Comment ID -->
-                        <p>Comment ID: {{ comment.id }}</p>
                         <!-- Comment body -->
                         <div class="text-white post-body" id="comment{{ comment.id }}">
                             {{ comment.content | safe | linebreaks}}
@@ -136,7 +134,7 @@
                                     <div>
                                         <button type="button"
                                             class="btn-sm d-inline edit-btn text-uppercase btn-sm-comments"
-                                            onclick="openEditForm('{{ comment.id }}')">Edit</button>
+                                            onclick="openEditForm('{{ comment.id }}', '{{ comment.content | escapejs }}')">Edit</button>
                                     </div>
                                 </div>
                                 {% endif %}
@@ -188,14 +186,8 @@
 {{ block.super }}
 <script src="{% static 'js/comment_delete.js' %}"></script>
 <script src="{% static 'js/posts.js' %}"></script>
-<script>
-    function openEditForm(commentId, commentContent) {
-        document.getElementById('edit-comment-form-' + commentId).style.display = 'block';
-    }
+<script src="{% static 'js/comment_forms.js' %}"></script>
 
-    function closeEditForm(commentId) {
-        document.getElementById('edit-comment-form-' + commentId).style.display = 'none';
-    }
-</script>
+
+
 {% endblock %}
-
