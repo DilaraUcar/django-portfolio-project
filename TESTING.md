@@ -45,7 +45,7 @@ Visit live site: [QuestHub](https://django-portfolio-468596d338f0.herokuapp.com/
  | When the user is logged in they can comment on any post they want.| Yes when user is logged in they will be redirected to home page which will have the button for writing a post in the upper right corner. If they want to comment on any posts they can do so by opening any post and then they will see the 'write a comment' button which will open up a form.|
  | |
 
-### POST/OPEN THREADS		
+### POST / OPEN THREADS		
 
 | Goals | How are they achieved? |
 | --- | --- |

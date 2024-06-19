@@ -50,6 +50,8 @@ The search bar lets users filter posts to easily find what they're looking for a
 
 The 'New Post' button will open up a form for the user to write a heading and some content. This form is only opened if the user is logged in. If not they will get a message telling them to log in or register to continue.
 
+---
+
 #### POST DETAIL PAGE:
 ![Post detail page](docs/readme/post_detail.jpeg)
 
@@ -59,10 +61,14 @@ Under each post theres a button for writing comments which will open up a form o
 
 The comments are sorted from oldest to newest in order. Under each comment theres a delete and edit button thats only displayed if a the comment belongs to the logged in user (giving the user full CRUD capabilities), which makes it easy for a user to edit or delete their comments in a quick way.
 
+---
+
 #### REGISTRATION / LOGIN PAGE:
 ![Login page](docs/readme/login.jpeg)
 
 The pages for account registration and user login are kept simple and clean and the designs are mostly from django allauth. New users can sign up using a username, email and a password, with all obligatory fields. User is also displayed with some 'rules' for passwords and also will get a small notification from the form in red text if the password or other fields does not pass and what improvements they can do. All this allows each user to get a more secure login.
+
+---
 
 #### PROFILE PAGE:
 ![User Profile page](docs/readme/profile.jpeg)
@@ -79,11 +85,14 @@ On the profile page, an logged in user can write a bio and upload a profile pict
 
 There's also a button for deleting the account that opens up a deletion modal to confirm deletion. Users can also see a list of the posts and comments they have made, if any, with each one linking to its origin if opened to read the post or comment. All profile pages are open to the public and all users can see there bio, avatar, and post/comments the user have made.
 
+---
 
 #### ABOUT PAGE:
 ![About page](docs/readme/about.jpeg)
 
 The About page of QuestHub is a brief description of the goal of the site, inviting everyone to join in the quest for knowledge and growth.
+
+---
 
 #### COMMENTS & PROFILE PAGE:
 ![CRUD Functionalities](docs/readme/crud.png)
