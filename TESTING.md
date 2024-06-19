@@ -185,28 +185,70 @@ During development, I came across multitude of bugs. With some debugging, and he
 
 ### Solved Bugs
 
-- Avatar images would load incorrectly or not at all for new users. I fixed this by changing the code for user images with help from CI walkthrough project for the image logic. The logic was taken from Code Institutes [blog walkthrough](https://github.com/Code-Institute-Solutions/blog/blob/main/15_testing/blog/templates/blog/post_detail.html) project for image fields.
+**Issue: Incorrect or Missing Avatar Images for New Users**
 
-I made the changes in my code from this:
+***Problem Description:***
 
-![JSHint validator](docs/testing/bug-fixes/avatar-logic-before.jpeg)
+Previously, avatar images were not loading correctly or were missing entirely for new users on the profile page. This issue was due to the image logic implementation, which required refinement to ensure proper display of user images.
 
-To this, using the same logic from walkthrough: 
+**Solution:**
 
-![JSHint validator](docs/testing/bug-fixes/avatar-logic-after.jpeg)
+To resolve the issue, the following changes were implemented:
 
-After these changes where made for the index.html, post_detail.html and profile.html using similar logic all images where showing properly and the bug was fixed.
+- The image logic for displaying user avatars was updated based on insights gained from a Code Institute (CI) [blog walkthrough project](https://github.com/Code-Institute-Solutions/blog/blob/main/15_testing/blog/templates/blog/post_detail.html) for image fields. This involved adopting a standardized approach to handle image rendering across different templates **('index.html', 'post_detail.html', 'profile.html')**.
 
-- In profile page there was a bug with the Bootstrap deletion modal. When the modal was opened the cancel and close(x) button was not working properly and was leaving the backdrop divs from the modal still on the page after modal was closed. To help solve this issue i got helped from CI tutor support Sarah that added this code to the end of profile.js file:
+<details>
+<summary>Code Before bug fix</summary>
 
-![Profile bug fix code](docs/testing/bug-fixes/profile-js.jpeg)
+![Image logic code before](docs/testing/bug-fixes/avatar-logic-before.jpeg)
+</details>
+<details>
+<summary>Code used for bug fix</summary>
 
-- The profile delete modal had another bug that was helped fixing from another CI tutor, Thomas, that added this line to the code above:
+![Image logic code before](docs/testing/bug-fixes/avatar-logic-after.jpeg)
+</details>
+
+---
+
+**Issue: Bootstrap Deletion Modal Behavior**
+
+***Problem Description:***
+
+There was a bug with the Bootstrap deletion modal on the profile page. When the modal was opened, the cancel and close (x) buttons were not functioning properly. Additionally, the modal backdrop elements remained visible on the page after the modal was closed, causing visual issues.
+
+**Solution:**
+
+To resolve this issue, the following changes were implemented:
+
+- Code was added to the end of the profile.js file to address the malfunctioning cancel and close (x) buttons, ensuring they function correctly and properly hide the modal backdrop after closing.
+
+<details>
+<summary>Code Used to fix Bug</summary>
+
+![Profile delete modal js fix code](docs/testing/bug-fixes/profile-js.jpeg)
+</details>
+
+<br>
+
+**Issue: Freezing Behavior After Modal Interaction**
+
+***Problem Description:***
+
+After fixing the Bootstrap deletion modal's cancel and close (x) button issues, another problem arose where the page would freeze after interacting with the modal. This freeze persisted even after resolving the backdrop issue.
+
+**Solution:**
+
+To resolve the freezing issue, the following change was made:
+
+- A line of code was added to the existing script to reload the page (location.reload()) when either the close (x) or cancel button is clicked in the deletion modal. This action ensures that any lingering freezing issues are mitigated by refreshing the page state.
 
 
-location.reload();
+**Collaborator Assistance:**
 
-The issue was that after pressing the buttons the page would freeze even after the backdrop issue was fixed. And with the code reload the page reloads itself when either the close(x) or cancel button is clicked to solve the freezing issue.
+The fixes and enhancements were implemented with guidance and support from CI tutors Sarah and Thomas, who provided expert assistance in troubleshooting and resolving the modal behavior issues.
+
+
+---
 
 **Issue: Unnecessary Validation Error Triggered for Avatar Field**
 
@@ -218,10 +260,25 @@ When updating a user profile using the **'ProfileForm'**, validation errors for 
 
 To address this issue, the following changes were made:
 
-- Modified the **'clean_avatar()'** method to check if the avatar field has changed compared to its initial instance before performing validation. If the avatar field remains unchanged, validation for file extension and type is skipped.
+- Modified the **'clean_avatar()'** method to check if the avatar field has changed compared to its initial instance before performing validation. If the **'avatar'** field remains unchanged, validation for file extension and type is skipped.
 
-- This ensures that validation errors are only triggered when the user updates the avatar field, improving user experience by preventing unnecessary error messages.
+- This ensures that validation errors are only triggered when the user updates the **'avatar'** field, improving user experience by preventing unnecessary error messages.
 
+<details>
+<summary>Code Used to fix Bug</summary>
+
+![Profile bug fix code](docs/testing/bug-fixes/avatar-bug-code.jpeg)
+</details>
+<details>
+<summary>Visual Before bug fix</summary>
+
+![Profile bug fix code](docs/testing/bug-fixes/profile-bug-before.jpeg)
+</details>
+<details>
+<summary>Visual After bug fix</summary>
+
+![Profile bug fix code](docs/testing/bug-fixes/profile-bug-after.jpeg)
+</details>
 
 ### Unfixed Bugs
 No unsolved bugs.
