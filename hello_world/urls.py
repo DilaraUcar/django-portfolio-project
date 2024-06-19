@@ -8,6 +8,6 @@ urlpatterns = [
     path('accounts/', include('django.contrib.auth.urls')),
     path('post/<slug:slug>/comment/<int:comment_id>/edit/',
          views.comment_edit, name='comment_edit'),
-    path('comment/<int:comment_id>/delete/',
-         views.comment_delete, name='delete_comment'),
+    path('<slug:slug>/delete_comment/<int:comment_id>',
+         views.comment_delete, name='comment_delete'),
 ]

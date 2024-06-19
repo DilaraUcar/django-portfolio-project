@@ -16,7 +16,7 @@ def profile(request, username):
 
     Retrieves the profile for the given username and renders the profile page
     with associated blog posts and comments. Allows the logged-in user to
-    update their profile information using a form and there avatar.
+    update their profile information using a form and their avatar.
 
     Returns:
         HttpResponse: Rendered profile template or redirect response
@@ -27,9 +27,6 @@ def profile(request, username):
     """
     profile = get_object_or_404(Profile, user__username=username)
     user = profile.user  # Define the user variable from the profile
-
-    # Generate profile URL dynamically
-    profile_url = reverse('profile', args=[username])
 
     posts = BlogPost.objects.filter(writer=user).order_by("created_at")
     comments = Comment.objects.filter(commenter=user).order_by("created_at")
@@ -60,7 +57,7 @@ def profile(request, username):
         "profile_form": profile_form,
         "posts": posts,
         "comments": comments,
-        "profile_url": profile_url,  # Pass profile_url to the context
+        "profile_url": reverse('profile', args=[username]),
     }
 
     return render(request, "user_profile/profile.html", context)

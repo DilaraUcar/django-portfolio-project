@@ -66,7 +66,7 @@
                     </li>
                     {% if user.is_authenticated %}
                     <li class="nav-item text-uppercase px-lg-4">
-                        <a class="nav-link {% if request.path == profile_url %}active"  aria-current="page{% endif %}"
+                        <a class="nav-link {% if request.path == profile_url %}active" aria-current="page{% endif %}"
                             href="{% url 'profile' user.username %}">My Profile</a>
                     </li>
                     <li class="nav-item text-uppercase px-lg-4">
@@ -92,7 +92,8 @@
         <div class="row">
             <div class="col-md-8 offset-md-2 text-fade mb-0">
                 {% for message in messages %}
-                <div class="my-0 mt-2 alert alert-dismissible fade show dismiss-card {% if 'avatar-error' in message.tags %}alert-danger{% endif %}" role="alert">
+                <div class="my-0 mt-2 alert alert-dismissible fade show dismiss-card {% if 'avatar-error' in message.tags %}alert-danger{% endif %}"
+                    role="alert">
                     {{ message|safe }}
                 </div>
                 {% endfor %}

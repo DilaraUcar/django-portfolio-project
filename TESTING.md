@@ -208,6 +208,21 @@ location.reload();
 
 The issue was that after pressing the buttons the page would freeze even after the backdrop issue was fixed. And with the code reload the page reloads itself when either the close(x) or cancel button is clicked to solve the freezing issue.
 
+**Issue: Unnecessary Validation Error Triggered for Avatar Field**
+
+***Problem Description:***
+
+When updating a user profile using the **'ProfileForm'**, validation errors for the **'avatar'** field were triggered even when only the **'about'** field was updated. This behavior occurred because the **'clean_avatar()'** method in **'forms.py'** unconditionally validated the **'avatar'** field whenever the form was submitted, regardless of whether the **'avatar'** was actually updated.
+
+**Solution:**
+
+To address this issue, the following changes were made:
+
+- Modified the **'clean_avatar()'** method to check if the avatar field has changed compared to its initial instance before performing validation. If the avatar field remains unchanged, validation for file extension and type is skipped.
+
+- This ensures that validation errors are only triggered when the user updates the avatar field, improving user experience by preventing unnecessary error messages.
+
+
 ### Unfixed Bugs
 No unsolved bugs.
 

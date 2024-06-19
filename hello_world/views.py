@@ -191,31 +191,25 @@ def comment_edit(request, slug, comment_id):
     return HttpResponseRedirect(reverse('post_detail', args=[slug]))
 
 
-@login_required
-def comment_delete(request, comment_id):
+def comment_delete(request, slug, comment_id):
     """
-    Deletes a comment from a blog post.
+    Delete an individual comment.
 
     **Context**
 
-    ``request``
-        HTTP request object containing form data.
+    ``post``
+        An instance of :model:`blog.Post`.
     ``comment``
-        Primary key of the comment to be deleted.
-
-    **Returns**
-
-    Redirects to the previous page (home) after deleting the comment.
-
+        A single comment related to the post.
     """
-    comment = get_object_or_404(Comment, id=comment_id)
+    queryset = BlogPost.objects.filter(status=1)
+    post = get_object_or_404(queryset, slug=slug)
+    comment = get_object_or_404(Comment, pk=comment_id)
 
-    # Check if the user has permission to delete the comment
-    if request.user == comment.commenter or request.user.is_staff:
+    if comment.commenter == request.user:
         comment.delete()
-        messages.success(request, "Comment deleted successfully.")
+        messages.add_message(request, messages.SUCCESS, 'Comment deleted successfully!')
     else:
-        messages.error(
-            request, "You don't have permission to delete this comment.")
+        messages.add_message(request, messages.ERROR, 'You can only delete your own comments!')
 
-    return redirect(request.META.get('HTTP_REFERER', 'home'))
+    return HttpResponseRedirect(reverse('post_detail', args=[slug]))
